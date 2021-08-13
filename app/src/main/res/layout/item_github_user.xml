@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/git_image_view"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/git_image"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#000000"/>
+
+    <TextView
+        android:id="@+id/git_username_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_toEndOf="@id/git_image_view"
+        android:text="@string/git_name"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/git_comp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/git_username_view"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/git_image_view"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/git_comp" />
+
+</RelativeLayout>
