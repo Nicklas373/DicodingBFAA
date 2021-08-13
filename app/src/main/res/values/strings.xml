@@ -100,16 +100,16 @@
         <item>10</item>
     </string-array>
 
-    <integer-array name="git_image">
-        <item>@drawable/user1</item>
-        <item>@drawable/user2</item>
-        <item>@drawable/user3</item>
-        <item>@drawable/user4</item>
-        <item>@drawable/user5</item>
-        <item>@drawable/user6</item>
-        <item>@drawable/user7</item>
-        <item>@drawable/user8</item>
-        <item>@drawable/user9</item>
-        <item>@drawable/user10</item>
-    </integer-array>
+    <string-array name="git_image">
+        <item>user1</item>
+        <item>user2</item>
+        <item>user3</item>
+        <item>user4</item>
+        <item>user5</item>
+        <item>user6</item>
+        <item>user7</item>
+        <item>user8</item>
+        <item>user9</item>
+        <item>user10</item>
+    </string-array>
 </resources>

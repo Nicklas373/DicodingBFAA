@@ -9,10 +9,8 @@
         android:id="@+id/git_image_view"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:scaleType="fitCenter"
         android:contentDescription="@string/git_image"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#000000"/>
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/git_username_view"

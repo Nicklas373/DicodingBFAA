@@ -12,16 +12,6 @@ class DetailGitUserActivity : AppCompatActivity() {
         const val EXTRA_GITHUB_USER = "extra_github_user"
     }
 
-    // Declare variable for textview and etc
-    lateinit var github_user_name: TextView
-    lateinit var github_user_id: TextView
-    lateinit var github_user_repository: TextView
-    lateinit var github_user_follower: TextView
-    lateinit var github_user_following: TextView
-    lateinit var github_user_location: TextView
-    lateinit var github_user_company: TextView
-    lateinit var github_user_image: ImageView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_github_user)
@@ -49,52 +39,42 @@ class DetailGitUserActivity : AppCompatActivity() {
         when (gituser.gitId) {
             "JakeWharton" -> {
                 github_user_image.setImageResource(R.drawable.user1)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "amitshekhariitbhu" -> {
                 github_user_image.setImageResource(R.drawable.user2)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "romainguy" -> {
                 github_user_image.setImageResource(R.drawable.user3)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "chrisbanes" -> {
                 github_user_image.setImageResource(R.drawable.user4)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "tipsy" -> {
                 github_user_image.setImageResource(R.drawable.user5)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "ravi8x" -> {
                 github_user_image.setImageResource(R.drawable.user6)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "jasoet" -> {
                 github_user_image.setImageResource(R.drawable.user7)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "budioktaviyan" -> {
                 github_user_image.setImageResource(R.drawable.user8)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "hendisantika" -> {
                 github_user_image.setImageResource(R.drawable.user9)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
 
             "sidiqpermana" -> {
                 github_user_image.setImageResource(R.drawable.user10)
-                Toast.makeText(this, gituser.gitId, Toast.LENGTH_SHORT).show()
             }
         }
     }

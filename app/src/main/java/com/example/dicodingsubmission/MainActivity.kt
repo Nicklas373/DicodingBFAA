@@ -1,10 +1,8 @@
 package com.example.dicodingsubmission
 
-import android.content.res.TypedArray
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -30,34 +28,33 @@ class MainActivity : AppCompatActivity() {
         prepare()
         addItem()
 
-        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            Toast.makeText(this@MainActivity, GitUser[position].gitName, Toast.LENGTH_SHORT).show()
+        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, _, _ ->
         }
     }
 
     private fun prepare() {
         GitListImage = resources.getStringArray(R.array.git_image)
         GitListName = resources.getStringArray(R.array.git_name)
-        GitListComp = resources.getStringArray(R.array.git_company)
         GitListId = resources.getStringArray(R.array.git_username)
-        GitListRepository = resources.getStringArray(R.array.git_repository)
         GitListFollower = resources.getStringArray(R.array.git_followers)
         GitListFollowing = resources.getStringArray(R.array.git_following)
+        GitListComp = resources.getStringArray(R.array.git_company)
         GitListLocation = resources.getStringArray(R.array.git_location)
+        GitListRepository = resources.getStringArray(R.array.git_repository)
     }
 
     private fun addItem() {
 
-        for (position in GitListName.indices) {
+        for (position in GitListImage.indices) {
             val gituser = GitHubUser(
                 GitListImage[position],
                 GitListName[position],
-                GitListComp[position],
-                GitListRepository[position],
                 GitListId[position],
                 GitListFollower[position],
                 GitListFollowing[position],
-                GitListLocation[position]
+                GitListComp[position],
+                GitListLocation[position],
+                GitListRepository[position]
             )
             GitUser.add(gituser)
         }

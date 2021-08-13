@@ -9,9 +9,6 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import android.graphics.drawable.Drawable
-import com.bumptech.glide.Glide
-
 
 class UserAdapter internal constructor(private val context: Context) : BaseAdapter() {
     internal var GitUser = arrayListOf<GitHubUser>()
@@ -29,14 +26,14 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
     }
 
     override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View {
-        val GitUsername = context.getResources().getStringArray(R.array.git_username)[position];
-        val GitName = context.getResources().getStringArray(R.array.git_name)[position];
-        val GitLocation = context.getResources().getStringArray(R.array.git_location)[position];
-        val GitCompany = context.getResources().getStringArray(R.array.git_company)[position];
-        val GitFollower = context.getResources().getStringArray(R.array.git_followers)[position];
-        val GitFollowing = context.getResources().getStringArray(R.array.git_following)[position];
-        val GitRepository = context.getResources().getStringArray(R.array.git_repository)[position];
-        val GitImage = context.getResources().getStringArray(R.array.git_image)[position];
+        val GitUsername = context.getResources().getStringArray(R.array.git_username)[position]
+        val GitName = context.getResources().getStringArray(R.array.git_name)[position]
+        val GitLocation = context.getResources().getStringArray(R.array.git_location)[position]
+        val GitCompany = context.getResources().getStringArray(R.array.git_company)[position]
+        val GitFollower = context.getResources().getStringArray(R.array.git_followers)[position]
+        val GitFollowing = context.getResources().getStringArray(R.array.git_following)[position]
+        val GitRepository = context.getResources().getStringArray(R.array.git_repository)[position]
+        val GitImage = context.getResources().getStringArray(R.array.git_image)[position]
 
         val GitID = GitHubUser(
             GitImage,
@@ -57,8 +54,8 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
         }
 
         val viewHolder = ViewHolder(itemView as View)
-
         val gituser = getItem(position) as GitHubUser
+
         viewHolder.bind(gituser)
 
         viewHolder.itemView.setOnClickListener {
@@ -122,7 +119,8 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
         fun bind(gituser: GitHubUser) {
             gitName.text = gituser.gitName
             gitComp.text = gituser.gitComp
-            gitImage.setImageDrawable(context.getResources().getDrawable(R.drawable.user1));
+            val getImage = context.resources.getIdentifier(gituser.gitImage, "drawable", context.packageName)
+            gitImage.setImageResource(getImage)
         }
     }
 }
