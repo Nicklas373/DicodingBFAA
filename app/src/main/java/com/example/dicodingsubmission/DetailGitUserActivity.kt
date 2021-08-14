@@ -3,7 +3,6 @@ package com.example.dicodingsubmission
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class DetailGitUserActivity : AppCompatActivity() {
@@ -15,8 +14,11 @@ class DetailGitUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_github_user)
+        setSupportActionBar(findViewById(R.id.frame_ics_layout_toolbar))
 
-        // Bind controller
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = resources.getString(R.string.app_name_secondary)
+
         val github_user_name: TextView = findViewById(R.id.git_name)
         val github_user_id: TextView = findViewById(R.id.git_id)
         val github_user_repository: TextView = findViewById(R.id.git_repo_txt)
@@ -25,9 +27,8 @@ class DetailGitUserActivity : AppCompatActivity() {
         val github_user_location: TextView = findViewById(R.id.git_location_txt)
         val github_user_company: TextView = findViewById(R.id.git_company_txt)
         val github_user_image: ImageView = findViewById(R.id.git_profile_imageview)
-
-        // Configuring
         val gituser = intent.getParcelableExtra<GitHubUser>(EXTRA_GITHUB_USER) as GitHubUser
+
         github_user_name.text = gituser.gitName
         github_user_id.text = gituser.gitId
         github_user_repository.text = gituser.gitRepo

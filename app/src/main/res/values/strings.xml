@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Github User</string>
+    <string name="app_name_secondary">Github Profile</string>
     <string name="git_image">Gambar Profil</string>
     <string name="git_name">Nama</string>
     <string name="git_id">ID</string>
@@ -9,6 +10,8 @@
     <string name="git_comp">Company</string>
     <string name="git_location">Location</string>
     <string name="git_repo">Repository</string>
+    <string name="favorite">Favourite</string>
+    <string name="share">Share</string>
     <string-array name="git_username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>

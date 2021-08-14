@@ -8,15 +8,25 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/frame_ics_layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
 
     <ImageView
         android:id="@+id/git_profile_imageview"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:contentDescription="@string/git_image" />
 
@@ -25,12 +35,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/git_name"
         android:textAlignment="center"
         android:textSize="32sp"
+        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
@@ -39,7 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:text="@string/git_id"
         android:textSize="20sp" />
@@ -50,10 +62,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:textAlignment="viewStart"
         android:text="@string/git_detail"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <TableLayout
@@ -61,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -83,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/black"/>
 
         </TableRow>
 
@@ -106,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/black"/>
 
         </TableRow>
 
@@ -129,7 +143,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/black"/>
+
         </TableRow>
 
         <TableRow
@@ -151,7 +167,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/black"/>
+
         </TableRow>
 
         <TableRow
@@ -173,8 +191,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textColor="@color/black"/>
+
         </TableRow>
+
     </TableLayout>
+
 </LinearLayout>
+
 </ScrollView>

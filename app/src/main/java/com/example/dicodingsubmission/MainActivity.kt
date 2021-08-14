@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(findViewById(R.id.activity_main_toolbar))
+
+        supportActionBar?.title = resources.getString(R.string.app_name)
+
         val listView: ListView = findViewById(R.id.main_git_list)
         GitAdapter = UserAdapter(this)
         listView.adapter = GitAdapter
