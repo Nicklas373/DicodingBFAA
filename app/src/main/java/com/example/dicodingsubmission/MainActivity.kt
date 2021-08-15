@@ -6,16 +6,16 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var GitAdapter: UserAdapter
-    private lateinit var GitListImage: Array<String>
-    private lateinit var GitListName: Array<String>
-    private lateinit var GitListComp: Array<String>
-    private lateinit var GitListId: Array<String>
-    private lateinit var GitListFollower: Array<String>
-    private lateinit var GitListFollowing: Array<String>
-    private lateinit var GitListLocation: Array<String>
-    private lateinit var GitListRepository: Array<String>
-    private var GitUser = arrayListOf<GitHubUser>()
+    private lateinit var gitAdapter: UserAdapter
+    private lateinit var gitListImage: Array<String>
+    private lateinit var gitListName: Array<String>
+    private lateinit var gitListComp: Array<String>
+    private lateinit var gitListId: Array<String>
+    private lateinit var gitListFollower: Array<String>
+    private lateinit var gitListFollowing: Array<String>
+    private lateinit var gitListLocation: Array<String>
+    private lateinit var gitListRepository: Array<String>
+    private var gitUserArray = arrayListOf<GitHubUser>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.app_name)
 
         val listView: ListView = findViewById(R.id.main_git_list)
-        GitAdapter = UserAdapter(this)
-        listView.adapter = GitAdapter
+        gitAdapter = UserAdapter(this)
+        listView.adapter = gitAdapter
 
         prepare()
         addItem()
@@ -37,32 +37,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepare() {
-        GitListImage = resources.getStringArray(R.array.git_image)
-        GitListName = resources.getStringArray(R.array.git_name)
-        GitListId = resources.getStringArray(R.array.git_username)
-        GitListFollower = resources.getStringArray(R.array.git_followers)
-        GitListFollowing = resources.getStringArray(R.array.git_following)
-        GitListComp = resources.getStringArray(R.array.git_company)
-        GitListLocation = resources.getStringArray(R.array.git_location)
-        GitListRepository = resources.getStringArray(R.array.git_repository)
+        gitListImage = resources.getStringArray(R.array.git_image)
+        gitListName = resources.getStringArray(R.array.git_name)
+        gitListId = resources.getStringArray(R.array.git_username)
+        gitListFollower = resources.getStringArray(R.array.git_followers)
+        gitListFollowing = resources.getStringArray(R.array.git_following)
+        gitListComp = resources.getStringArray(R.array.git_company)
+        gitListLocation = resources.getStringArray(R.array.git_location)
+        gitListRepository = resources.getStringArray(R.array.git_repository)
     }
 
     private fun addItem() {
 
-        for (position in GitListImage.indices) {
-            val gituser = GitHubUser(
-                GitListImage[position],
-                GitListName[position],
-                GitListId[position],
-                GitListFollower[position],
-                GitListFollowing[position],
-                GitListComp[position],
-                GitListLocation[position],
-                GitListRepository[position]
+        for (position in gitListImage.indices) {
+            val gitUser = GitHubUser(
+                gitListImage[position],
+                gitListName[position],
+                gitListId[position],
+                gitListFollower[position],
+                gitListFollowing[position],
+                gitListComp[position],
+                gitListLocation[position],
+                gitListRepository[position]
             )
-            GitUser.add(gituser)
+            gitUserArray.add(gitUser)
         }
 
-        GitAdapter.GitUser = GitUser
+        gitAdapter.gitUser = gitUserArray
     }
 }

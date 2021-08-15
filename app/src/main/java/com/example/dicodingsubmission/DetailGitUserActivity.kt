@@ -19,63 +19,63 @@ class DetailGitUserActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = resources.getString(R.string.app_name_secondary)
 
-        val github_user_name: TextView = findViewById(R.id.git_name)
-        val github_user_id: TextView = findViewById(R.id.git_id)
-        val github_user_repository: TextView = findViewById(R.id.git_repo_txt)
-        val github_user_follower: TextView = findViewById(R.id.git_follower_txt)
-        val github_user_following: TextView = findViewById(R.id.git_following_txt)
-        val github_user_location: TextView = findViewById(R.id.git_location_txt)
-        val github_user_company: TextView = findViewById(R.id.git_company_txt)
-        val github_user_image: ImageView = findViewById(R.id.git_profile_imageview)
-        val gituser = intent.getParcelableExtra<GitHubUser>(EXTRA_GITHUB_USER) as GitHubUser
+        val githubUserName: TextView = findViewById(R.id.git_name)
+        val githubUserId: TextView = findViewById(R.id.git_id)
+        val githubUserRepository: TextView = findViewById(R.id.git_repo_txt)
+        val githubUserFollower: TextView = findViewById(R.id.git_follower_txt)
+        val githubUserFollowing: TextView = findViewById(R.id.git_following_txt)
+        val githubUserLocation: TextView = findViewById(R.id.git_location_txt)
+        val githubUserCompany: TextView = findViewById(R.id.git_company_txt)
+        val githubUserImage: ImageView = findViewById(R.id.git_profile_imageview)
+        val gitUser = intent.getParcelableExtra<GitHubUser>(EXTRA_GITHUB_USER) as GitHubUser
 
-        github_user_name.text = gituser.gitName
-        github_user_id.text = gituser.gitId
-        github_user_repository.text = gituser.gitRepo
-        github_user_follower.text = gituser.gitFollower
-        github_user_following.text = gituser.gitFollowing
-        github_user_location.text = gituser.gitLocation
-        github_user_company.text = gituser.gitComp
+        githubUserName.text = gitUser.gitName
+        githubUserId.text = gitUser.gitId
+        githubUserRepository.text = gitUser.gitRepo
+        githubUserFollower.text = gitUser.gitFollower
+        githubUserFollowing.text = gitUser.gitFollowing
+        githubUserLocation.text = gitUser.gitLocation
+        githubUserCompany.text = gitUser.gitComp
 
-        when (gituser.gitId) {
-            "JakeWharton" -> {
-                github_user_image.setImageResource(R.drawable.user1)
+        when (gitUser.gitId) {
+            resources.getStringArray(R.array.git_username)[0].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user1)
             }
 
-            "amitshekhariitbhu" -> {
-                github_user_image.setImageResource(R.drawable.user2)
+            resources.getStringArray(R.array.git_username)[1].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user2)
             }
 
-            "romainguy" -> {
-                github_user_image.setImageResource(R.drawable.user3)
+            resources.getStringArray(R.array.git_username)[2].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user3)
             }
 
-            "chrisbanes" -> {
-                github_user_image.setImageResource(R.drawable.user4)
+            resources.getStringArray(R.array.git_username)[3].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user4)
             }
 
-            "tipsy" -> {
-                github_user_image.setImageResource(R.drawable.user5)
+            resources.getStringArray(R.array.git_username)[4].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user5)
             }
 
-            "ravi8x" -> {
-                github_user_image.setImageResource(R.drawable.user6)
+            resources.getStringArray(R.array.git_username)[5].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user6)
             }
 
-            "jasoet" -> {
-                github_user_image.setImageResource(R.drawable.user7)
+            resources.getStringArray(R.array.git_username)[6].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user7)
             }
 
-            "budioktaviyan" -> {
-                github_user_image.setImageResource(R.drawable.user8)
+            resources.getStringArray(R.array.git_username)[7].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user8)
             }
 
-            "hendisantika" -> {
-                github_user_image.setImageResource(R.drawable.user9)
+            resources.getStringArray(R.array.git_username)[8].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user9)
             }
 
-            "sidiqpermana" -> {
-                github_user_image.setImageResource(R.drawable.user10)
+            resources.getStringArray(R.array.git_username)[9].toString() -> {
+                githubUserImage.setImageResource(R.drawable.user10)
             }
         }
     }

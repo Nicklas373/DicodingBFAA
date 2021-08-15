@@ -9,14 +9,14 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
 class UserAdapter internal constructor(private val context: Context) : BaseAdapter() {
-    internal var GitUser = arrayListOf<GitHubUser>()
+    var gitUser = arrayListOf<GitHubUser>()
 
     override fun getCount(): Int {
-        return GitUser.size
+        return gitUser.size
     }
 
     override fun getItem(position: Int): Any {
-        return GitUser[position]
+        return gitUser[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -24,24 +24,24 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
     }
 
     override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View {
-        val GitUsername = context.getResources().getStringArray(R.array.git_username)[position]
-        val GitName = context.getResources().getStringArray(R.array.git_name)[position]
-        val GitLocation = context.getResources().getStringArray(R.array.git_location)[position]
-        val GitCompany = context.getResources().getStringArray(R.array.git_company)[position]
-        val GitFollower = context.getResources().getStringArray(R.array.git_followers)[position]
-        val GitFollowing = context.getResources().getStringArray(R.array.git_following)[position]
-        val GitRepository = context.getResources().getStringArray(R.array.git_repository)[position]
-        val GitImage = context.getResources().getStringArray(R.array.git_image)[position]
+        val gitUsername = context.resources.getStringArray(R.array.git_username)[position]
+        val gitName = context.resources.getStringArray(R.array.git_name)[position]
+        val gitLocation = context.resources.getStringArray(R.array.git_location)[position]
+        val gitCompany = context.resources.getStringArray(R.array.git_company)[position]
+        val gitFollower = context.resources.getStringArray(R.array.git_followers)[position]
+        val gitFollowing = context.resources.getStringArray(R.array.git_following)[position]
+        val gitRepository = context.resources.getStringArray(R.array.git_repository)[position]
+        val gitImage = context.resources.getStringArray(R.array.git_image)[position]
 
-        val GitID = GitHubUser(
-            GitImage,
-            GitName,
-            GitUsername,
-            GitFollower,
-            GitFollowing,
-            GitCompany,
-            GitLocation,
-            GitRepository
+        val gitID = GitHubUser(
+            gitImage,
+            gitName,
+            gitUsername,
+            gitFollower,
+            gitFollowing,
+            gitCompany,
+            gitLocation,
+            gitRepository
         )
 
         var itemView = view
@@ -52,13 +52,13 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
         }
 
         val viewHolder = ViewHolder(itemView as View)
-        val gituser = getItem(position) as GitHubUser
+        val gitUser = getItem(position) as GitHubUser
 
-        viewHolder.bind(gituser)
+        viewHolder.bind(gitUser)
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent(context, DetailGitUserActivity::class.java)
-            intent.putExtra(DetailGitUserActivity.EXTRA_GITHUB_USER, GitID)
+            intent.putExtra(DetailGitUserActivity.EXTRA_GITHUB_USER, gitID)
             context.startActivity(intent)
         }
 
@@ -72,19 +72,19 @@ class UserAdapter internal constructor(private val context: Context) : BaseAdapt
         private val gitFavourite: Button = view.findViewById(R.id.git_favourite)
         private val gitShare: Button = view.findViewById(R.id.git_share)
 
-        fun bind(gituser: GitHubUser) {
-            val getImage = context.resources.getIdentifier(gituser.gitImage, "drawable", context.packageName)
+        fun bind(gitUser: GitHubUser) {
+            val getImage = context.resources.getIdentifier(gitUser.gitImage, "drawable", context.packageName)
 
-            gitName.text = gituser.gitName
-            gitComp.text = gituser.gitComp
+            gitName.text = gitUser.gitName
+            gitComp.text = gitUser.gitComp
             gitImage.setImageResource(getImage)
 
             gitFavourite.setOnClickListener {
-                Toast.makeText(itemView.context, "Favorite " + gituser.gitName.toString() + " !", Toast.LENGTH_LONG).show()
+                Toast.makeText(itemView.context, "Favorite " + gitUser.gitName.toString() + " !", Toast.LENGTH_LONG).show()
             }
 
             gitShare.setOnClickListener{
-                Toast.makeText(itemView.context, "Shared " + gituser.gitName.toString() + " !", Toast.LENGTH_LONG).show()
+                Toast.makeText(itemView.context, "Shared " + gitUser.gitName.toString() + " !", Toast.LENGTH_LONG).show()
             }
         }
     }
