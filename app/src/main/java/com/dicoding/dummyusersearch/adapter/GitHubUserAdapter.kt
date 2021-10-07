@@ -1,5 +1,6 @@
 package com.dicoding.dummyusersearch.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity
+import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity.Companion.EXTRA_GITHUB_USER
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.squareup.picasso.Picasso
@@ -20,14 +23,6 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) : Recy
         var gitImage: CircleImageView = itemView.findViewById(R.id.git_image_view)
         var gitFavourite: Button = itemView.findViewById(R.id.git_favourite)
         var gitShare: Button = itemView.findViewById(R.id.git_share)
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
     }
 
     override fun getItemCount(): Int = listUser.size
@@ -47,6 +42,11 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) : Recy
         }
         holder.gitShare.setOnClickListener{
             Toast.makeText(holder.itemView.context, "Shared $git_username !", Toast.LENGTH_LONG).show()
+        }
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, GithubUserProfileActivity::class.java)
+            intent.putExtra(EXTRA_GITHUB_USER, git_username)
+            holder.itemView.context.startActivity(intent)
         }
     }
 }
