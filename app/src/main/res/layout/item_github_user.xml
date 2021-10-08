@@ -1,49 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/git_image_view"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/git_image"
         app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_color="#FF000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/git_username_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_toEndOf="@id/git_image_view"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/git_name"
         android:textSize="18sp"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/git_image_view"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/git_url_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/git_username_view"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/git_image_view"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="@string/git_url" />
+        android:text="@string/git_url"
+        app:layout_constraintLeft_toRightOf="@+id/git_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/git_username_view"/>
 
     <LinearLayout
         android:id="@+id/layout_button"
@@ -52,25 +58,31 @@
         android:layout_below="@id/git_url_view"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_toEndOf="@id/git_image_view">
+        android:layout_toEndOf="@id/git_image_view"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/git_image_view">
 
         <Button
             android:id="@+id/git_favourite"
-            style="@style/Widget.AppCompat.Button.Colored"
+            app:icon="@drawable/ic_baseline_favorite_24"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="10dp"
             android:text="@string/favorite"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/git_share"
-            style="@style/Widget.AppCompat.Button.Colored"
+            app:icon="@drawable/ic_baseline_share_24"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="15dp"
             android:text="@string/share"
             android:textSize="12sp" />
     </LinearLayout>
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

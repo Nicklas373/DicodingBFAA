@@ -19,15 +19,17 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/git_profile_imageview"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.087" />
+            app:layout_constraintVertical_bias="0.037" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/git_name_icon"
@@ -37,6 +39,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
 
@@ -50,6 +54,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/git_name_icon" />
 
@@ -61,6 +67,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/ic_baseline_mail"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_name_icon"
             app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
 
@@ -72,8 +80,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:textColor="@color/white"
+            android:maxLines="3"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_name"
             app:layout_constraintStart_toEndOf="@+id/git_email_icon" />
 
@@ -85,6 +96,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/ic_baseline_location_city_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_email_icon"
             app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
 
@@ -98,6 +111,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_mail"
             app:layout_constraintStart_toEndOf="@+id/git_location_icon" />
 
@@ -111,6 +126,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/git_repo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -124,6 +141,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_repository"
             app:layout_constraintStart_toStartOf="@id/git_repository" />
 
@@ -137,6 +156,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/git_follower"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
             app:layout_constraintStart_toEndOf="@id/git_repository" />
 
@@ -150,6 +171,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_followers"
             app:layout_constraintStart_toStartOf="@id/git_followers" />
 
@@ -163,6 +186,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/git_following"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
             app:layout_constraintStart_toEndOf="@id/git_followers" />
 
@@ -176,6 +201,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_following"
             app:layout_constraintStart_toStartOf="@id/git_following" />
 
@@ -200,6 +227,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_repository_count"
             app:layout_constraintStart_toEndOf="@+id/git_company_icon" />
 
@@ -224,6 +253,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/git_company"
             app:layout_constraintStart_toEndOf="@+id/git_join_icon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -233,7 +264,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@android:color/white" />
+            app:tabBackground="@drawable/tab_background"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorHeight="5dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@android:color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
