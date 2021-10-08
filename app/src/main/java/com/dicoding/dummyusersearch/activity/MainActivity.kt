@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -26,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = findViewById<SearchView>(R.id.gitSearch)
-
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainActivityViewModel::class.java)
         mainViewModel.githubUserArray.observe(this, { userArray ->
             setGitHubUserData(userArray)
@@ -38,11 +36,17 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
 
+        mainViewModel.isToast.observe(this,{ isToast ->
+          showToast(isToast, mainViewModel.toastReason.toString())
+        })
+
         val layoutManager = LinearLayoutManager(this)
         binding.listGithubUser.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = findViewById<SearchView>(R.id.gitSearch)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.git_search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -75,6 +79,14 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showToast(isToast: Boolean, toastReason: String) {
+        if (isToast) {
+            Toast.makeText(this, "It's Safe", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, toastReason, Toast.LENGTH_SHORT).show()
         }
     }
 }
