@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
+        title = resources.getString(R.string.app_name)
+
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = findViewById<SearchView>(R.id.gitSearch)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
