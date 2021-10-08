@@ -1,5 +1,6 @@
 package com.dicoding.dummyusersearch.api
 
+import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.dicoding.dummyusersearch.userdata.GitHubUserResponse
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
 import retrofit2.Call
@@ -21,4 +22,10 @@ interface ApiService {
     fun getUserDetail(
         @Path("username") username: String
     ): Call<GitHubUserJSON>
+
+    @GET("users/{username}/followers")
+    @Headers("Authorization: token YOUR_GITHUB_TOKEN")
+    fun getUserFollowers(
+        @Path("username") username: String
+    ): Call<List<GitHubUserArray>>
 }

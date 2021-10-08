@@ -17,24 +17,24 @@ import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) : RecyclerView.Adapter<GithubUserAdapter.ListViewHolder>() {
+class GithubUserFollowersAdapter(private val listUser: ArrayList<GitHubUserArray>) : RecyclerView.Adapter<GithubUserFollowersAdapter.ListViewHolder>() {
 
     private val prefsName = "TEMP_ID"
     private val keyId = "key_id"
     private lateinit var sharedPref: SharedPreferences
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var gitName: TextView = itemView.findViewById(R.id.git_username_view)
-        var gitId: TextView = itemView.findViewById(R.id.git_url_view)
-        var gitImage: CircleImageView = itemView.findViewById(R.id.git_image_view)
-        var gitFavourite: Button = itemView.findViewById(R.id.git_favourite)
-        var gitShare: Button = itemView.findViewById(R.id.git_share)
+        var gitName: TextView = itemView.findViewById(R.id.git_username_view_followers)
+        var gitId: TextView = itemView.findViewById(R.id.git_url_view_followers)
+        var gitImage: CircleImageView = itemView.findViewById(R.id.git_image_view_followers)
+        var gitFavourite: Button = itemView.findViewById(R.id.git_favourite_followers)
+        var gitShare: Button = itemView.findViewById(R.id.git_share_followers)
     }
 
     override fun getItemCount(): Int = listUser.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_github_user, viewGroup, false)
+        val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_github_user_followers, viewGroup, false)
         return ListViewHolder(view)
     }
 

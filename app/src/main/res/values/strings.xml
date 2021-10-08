@@ -16,10 +16,5 @@
     <string name="share">Share</string>
     <string name="tab_text_1">Following</string>
     <string name="tab_text_2">Followers</string>
-    <string name="content_tab_home">Welcome Home</string>
-    <string name="content_tab_profile">Change your Profile here</string>
-    <string name="content_tab_text">This is Tab %1$d</string>
-    <string name="menu_users_profile">User Profile</string>
-    <string name="menu_about">About</string>
     <string name="PLACEHOLDER">PLACEHOLDER</string>
 </resources>

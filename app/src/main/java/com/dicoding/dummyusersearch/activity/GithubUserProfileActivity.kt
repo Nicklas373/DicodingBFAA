@@ -3,10 +3,14 @@ package com.dicoding.dummyusersearch.activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.api.ApiConfig
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -16,6 +20,12 @@ import retrofit2.Response
 class GithubUserProfileActivity : AppCompatActivity() {
 
     companion object {
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
+
         private val TAG = GithubUserProfileActivity::class.java.simpleName
         const val EXTRA_GITHUB_USER = "extra_github_user"
     }
@@ -31,6 +41,15 @@ class GithubUserProfileActivity : AppCompatActivity() {
         } else {
             getGitHubUserData("Null")
         }
+
+        val sectionsPagerAdapter = SectionPagerActivity(this)
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        viewPager.adapter = sectionsPagerAdapter
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+        supportActionBar?.elevation = 0f
     }
 
     private fun getGitHubUserData(query: String) {
