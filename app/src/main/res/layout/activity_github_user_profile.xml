@@ -1,79 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+    tools:context=".activity.GithubUserProfileActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:orientation="vertical">
+        android:background="@color/black">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_app_menu_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:cardBackgroundColor="@color/black">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_profile_imageview"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.087" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_name_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
+
+        <TextView
+            android:id="@+id/git_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/git_name_icon" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/git_profile_imageview"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FFFFFFFF"
-                android:contentDescription="@string/git_image" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_email_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_mail"
+            app:layout_constraintTop_toBottomOf="@id/git_name_icon"
+            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
 
-            <TextView
-                android:id="@+id/git_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/git_name"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/git_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_name"
+            app:layout_constraintStart_toEndOf="@+id/git_email_icon" />
 
-            <TextView
-                android:id="@+id/git_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/git_email"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_location_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_location_city_24"
+            app:layout_constraintTop_toBottomOf="@id/git_email_icon"
+            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
 
-            <TextView
-                android:id="@+id/git_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/git_location"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/git_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_mail"
+            app:layout_constraintStart_toEndOf="@+id/git_location_icon" />
+
+        <TextView
+            android:id="@+id/git_repository"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/git_repo"
+            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/git_repository_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_repository"
+            app:layout_constraintStart_toStartOf="@id/git_repository" />
+
+        <TextView
+            android:id="@+id/git_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/git_follower"
+            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+            app:layout_constraintStart_toEndOf="@id/git_repository" />
+
+        <TextView
+            android:id="@+id/git_followers_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_followers"
+            app:layout_constraintStart_toStartOf="@id/git_followers" />
+
+        <TextView
+            android:id="@+id/git_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/git_following"
+            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+            app:layout_constraintStart_toEndOf="@id/git_followers" />
+
+        <TextView
+            android:id="@+id/git_following_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_following"
+            app:layout_constraintStart_toStartOf="@id/git_following" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_company_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_work_24"
+            app:layout_constraintTop_toBottomOf="@id/git_repository_count"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/git_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_repository_count"
+            app:layout_constraintStart_toEndOf="@+id/git_company_icon" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/git_join_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_baseline_create_24"
+            app:layout_constraintTop_toBottomOf="@id/git_company_icon"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/git_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="@string/PLACEHOLDER"
+            app:layout_constraintTop_toBottomOf="@id/git_company"
+            app:layout_constraintStart_toEndOf="@+id/git_join_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

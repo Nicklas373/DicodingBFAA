@@ -19,4 +19,19 @@ data class GitHubUserJSON(
 	@field:SerializedName("email")
 	val email: String? = null,
 
+	@field:SerializedName("company")
+	val company: String? = null,
+
+	@field:SerializedName("public_repos")
+	val public_repos: String? = null,
+
+	@field:SerializedName("followers")
+	val followers: String? = null,
+
+	@field:SerializedName("following")
+	val following: String? = null,
+
+	@field:SerializedName("created_at")
+	val created_at: String? = null,
+
 ) : Parcelable
