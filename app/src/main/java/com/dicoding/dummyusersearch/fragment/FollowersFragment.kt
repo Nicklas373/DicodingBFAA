@@ -11,26 +11,26 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.dummyusersearch.adapter.GithubUserAdapter
 import com.dicoding.dummyusersearch.api.ApiConfig
-import com.dicoding.dummyusersearch.databinding.FragmentFollowingBinding
+import com.dicoding.dummyusersearch.databinding.FragmentFollowersBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowingFragment : Fragment() {
+class FollowersFragment: Fragment() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
-    private var _binding: FragmentFollowingBinding? = null
+    private var _binding: FragmentFollowersBinding? = null
     private val binding get() = _binding!!
     private val prefsName = "TEMP_ID"
     private val keyId = "key_id"
 
     companion object {
-        private val TAG = FollowingFragment::class.java.simpleName
+        private val TAG = FollowersFragment::class.java.simpleName
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFollowingBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,12 +46,12 @@ class FollowingFragment : Fragment() {
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
 
-        getGitHubUserFollowingData(id.toString())
+        getGitHubUserFollowersData(id.toString())
     }
 
-    private fun getGitHubUserFollowingData(query: String) {
+    private fun getGitHubUserFollowersData(query: String) {
         binding.progressBar.visibility = View.VISIBLE
-        val client = ApiConfig.getApiService().getUserFollowing(query)
+        val client = ApiConfig.getApiService().getUserFollowers(query)
         client.enqueue(object : Callback<List<GitHubUserArray>> {
             override fun onResponse(
                 call: Call<List<GitHubUserArray>>,
@@ -62,7 +62,7 @@ class FollowingFragment : Fragment() {
                     if (responseBody != null) {
                         listGitHubUser.clear()
                         binding.progressBar.visibility = View.GONE
-                        setGitHubUserFollowingData(responseBody)
+                        setGitHubUserFollowersData(responseBody)
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
@@ -75,7 +75,7 @@ class FollowingFragment : Fragment() {
         })
     }
 
-    private fun setGitHubUserFollowingData(listGithubUserID: List<GitHubUserArray>) {
+    private fun setGitHubUserFollowersData(listGithubUserID: List<GitHubUserArray>) {
         val listReview = ArrayList<GitHubUserArray>()
         for (userID in listGithubUserID) {
             val user = GitHubUserArray(userID.login, userID.htmlUrl, userID.avatarUrl)
