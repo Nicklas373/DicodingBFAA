@@ -1,8 +1,10 @@
 package com.dicoding.dummyusersearch.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -19,6 +21,9 @@ import retrofit2.Response
 
 class GithubUserProfileActivity : AppCompatActivity() {
 
+    private val prefsName = "TEMP_ID"
+    private val keyId = "key_id"
+
     companion object {
         @StringRes
         private val TAB_TITLES = intArrayOf(
@@ -27,14 +32,14 @@ class GithubUserProfileActivity : AppCompatActivity() {
         )
 
         private val TAG = GithubUserProfileActivity::class.java.simpleName
-        const val EXTRA_GITHUB_USER = "extra_github_user"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_github_user_profile)
 
-        val gitUser = intent.getStringExtra(EXTRA_GITHUB_USER)
+        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val gitUser = sharedPref.getString(keyId, "null")
         if (gitUser != null) {
             getGitHubUserData(gitUser)
             title = gitUser
@@ -74,10 +79,30 @@ class GithubUserProfileActivity : AppCompatActivity() {
                         val dateJoin: String? = responseBody.created_at
                         val splitDate = dateJoin?.substring(0, dateJoin.length - 10)
 
-                        gitNameText.text = responseBody.name
-                        gitEmailText.text = responseBody.email
-                        gitLocationText.text = responseBody.location
-                        gitCompanyText.text = responseBody.company
+                        if (responseBody.name.toString() == "") {
+                            gitNameText.text = "-"
+                        } else {
+                            gitNameText.text = responseBody.name
+                        }
+
+                        if (responseBody.email.toString() == "") {
+                            gitEmailText.text = "-"
+                        } else {
+                            gitEmailText.text = responseBody.email
+                        }
+
+                        if (responseBody.location.toString() == "") {
+                            gitLocationText.text = "-"
+                        } else {
+                            gitLocationText.text = responseBody.location
+                        }
+
+                        if (responseBody.company.toString() == "") {
+                            gitCompanyText.text = "-"
+                        } else {
+                            gitCompanyText.text = responseBody.company
+                        }
+
                         gitJoinText.text = splitDate
                         gitFollowersText.text = responseBody.followers
                         gitFollowingText.text = responseBody.following
@@ -85,10 +110,12 @@ class GithubUserProfileActivity : AppCompatActivity() {
                         Picasso.get().load(responseBody.avatarUrl).into(gitImageDraw)
                     }
                 } else {
+                    Toast.makeText(this@GithubUserProfileActivity, "onFailure: ${response.message()}", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<GitHubUserJSON>, t: Throwable) {
+                Toast.makeText(this@GithubUserProfileActivity, "onFailure: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
