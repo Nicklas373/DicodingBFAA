@@ -10,12 +10,12 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity
-import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity.Companion.EXTRA_GITHUB_USER
 import com.dicoding.dummyusersearch.R
+import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+
 
 class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) : RecyclerView.Adapter<GithubUserAdapter.ListViewHolder>() {
 
@@ -48,11 +48,15 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) : Recy
             Toast.makeText(holder.itemView.context, "Favourite $git_username !", Toast.LENGTH_LONG).show()
         }
         holder.gitShare.setOnClickListener{
-            Toast.makeText(holder.itemView.context, "Shared $git_username !", Toast.LENGTH_LONG).show()
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, git_id)
+                type = "text/html"
+            }
+            holder.itemView.context.startActivity(sendIntent)
         }
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, GithubUserProfileActivity::class.java)
-            intent.putExtra(EXTRA_GITHUB_USER, git_username)
             sharedPrefID(git_username)
             holder.itemView.context.startActivity(intent)
         }
