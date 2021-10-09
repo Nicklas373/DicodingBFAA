@@ -15,6 +15,7 @@
     <string name="favorite">Favourite</string>
     <string name="share">Share</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
     <string name="tab_text_1">Following</string>
     <string name="tab_text_2">Followers</string>
     <string name="PLACEHOLDER">PLACEHOLDER</string>

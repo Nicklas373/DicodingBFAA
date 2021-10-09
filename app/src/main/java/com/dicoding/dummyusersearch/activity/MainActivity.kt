@@ -2,10 +2,14 @@ package com.dicoding.dummyusersearch.activity
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,6 +23,8 @@ import com.dicoding.dummyusersearch.viewmodel.MainActivityViewModel
 class MainActivity : AppCompatActivity() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
     private lateinit var binding: ActivityMainBinding
+    private val prefsName = "TEMP_ID"
+    private val themeId = "theme_id"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainActivityViewModel::class.java)
+        val layoutManager = LinearLayoutManager(this)
+        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = findViewById<SearchView>(R.id.gitSearch)
+
+        initTheme()
+
         mainViewModel.githubUserArray.observe(this, { userArray ->
             setGitHubUserData(userArray)
         })
@@ -40,15 +53,11 @@ class MainActivity : AppCompatActivity() {
           showToast(isToast, mainViewModel.toastReason.toString())
         })
 
-        val layoutManager = LinearLayoutManager(this)
         binding.listGithubUser.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
         title = resources.getString(R.string.app_name)
 
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = findViewById<SearchView>(R.id.gitSearch)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.git_search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -64,6 +73,48 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        setMode(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setMode(selectedMode: Int) {
+        when (selectedMode) {
+            R.id.action_dark_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefTheme("true")
+            }
+            R.id.action_light_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefTheme("false")
+            }
+        }
+    }
+
+    private fun sharedPrefTheme(theme: String) {
+        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        editor.putString(themeId, theme)
+        editor.apply()
+    }
+
+    private fun initTheme(){
+        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val theme = sharedPref.getString(themeId, "false")
+        if (theme.toString() == "true") {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            sharedPrefTheme("true")
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            sharedPrefTheme("false")
+        }
     }
 
     private fun setGitHubUserData(listGithubUserID: List<GitHubUserArray>) {
@@ -85,9 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showToast(isToast: Boolean, toastReason: String) {
-        if (isToast) {
-            Toast.makeText(this, "It's Safe", Toast.LENGTH_SHORT).show()
-        } else {
+        if (!isToast){
             Toast.makeText(this, toastReason, Toast.LENGTH_SHORT).show()
         }
     }

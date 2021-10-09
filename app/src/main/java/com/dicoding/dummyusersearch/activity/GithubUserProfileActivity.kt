@@ -1,12 +1,16 @@
 package com.dicoding.dummyusersearch.activity
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.api.ApiConfig
@@ -23,6 +27,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
 
     private val prefsName = "TEMP_ID"
     private val keyId = "key_id"
+    private val themeId = "theme_id"
 
     companion object {
         @StringRes
@@ -40,6 +45,10 @@ class GithubUserProfileActivity : AppCompatActivity() {
 
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
         val gitUser = sharedPref.getString(keyId, "null")
+        val sectionsPagerAdapter = SectionPagerActivity(this)
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        val tabs: TabLayout = findViewById(R.id.tabs)
+
         if (gitUser != null) {
             getGitHubUserData(gitUser)
             title = gitUser
@@ -47,14 +56,55 @@ class GithubUserProfileActivity : AppCompatActivity() {
             getGitHubUserData("Null")
         }
 
-        val sectionsPagerAdapter = SectionPagerActivity(this)
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        val tabs: TabLayout = findViewById(R.id.tabs)
+        initTheme()
+
         viewPager.adapter = sectionsPagerAdapter
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        setMode(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setMode(selectedMode: Int) {
+        when (selectedMode) {
+            R.id.action_dark_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefTheme("true")
+            }
+            R.id.action_light_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefTheme("false")
+            }
+        }
+    }
+
+    private fun sharedPrefTheme(theme: String) {
+        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        editor.putString(themeId, theme)
+        editor.apply()
+    }
+
+    private fun initTheme(){
+        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val theme = sharedPref.getString(themeId, "false")
+        if (theme.toString() == "true") {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            sharedPrefTheme("true")
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            sharedPrefTheme("false")
+        }
     }
 
     private fun getGitHubUserData(query: String) {

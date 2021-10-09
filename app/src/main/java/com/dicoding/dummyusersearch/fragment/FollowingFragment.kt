@@ -45,7 +45,6 @@ class FollowingFragment : Fragment() {
         binding.listGithubUser.layoutManager = layoutManager
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
-
         getGitHubUserFollowingData(id.toString())
     }
 

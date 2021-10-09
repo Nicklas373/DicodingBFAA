@@ -8,7 +8,6 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:background="#cfd8dc"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_github_user"
-        android:background="#cfd8dc"
         android:scrollbars="vertical"
         tools:listitem="@layout/item_github_user"
         android:layout_width="match_parent"
