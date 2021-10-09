@@ -141,7 +141,6 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:text="@string/PLACEHOLDER"
-            app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/git_followers_count"
             app:layout_constraintTop_toBottomOf="@id/git_repository"
             app:layout_constraintStart_toStartOf="@id/git_repository" />
