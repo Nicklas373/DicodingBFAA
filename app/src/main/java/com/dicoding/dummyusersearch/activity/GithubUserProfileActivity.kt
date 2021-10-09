@@ -79,25 +79,25 @@ class GithubUserProfileActivity : AppCompatActivity() {
                         val dateJoin: String? = responseBody.created_at
                         val splitDate = dateJoin?.substring(0, dateJoin.length - 10)
 
-                        if (responseBody.name.toString() == "") {
+                        if (responseBody.name.isNullOrBlank()) {
                             gitNameText.text = "-"
                         } else {
                             gitNameText.text = responseBody.name
                         }
 
-                        if (responseBody.email.toString() == "") {
+                        if (responseBody.email.isNullOrBlank()) {
                             gitEmailText.text = "-"
                         } else {
                             gitEmailText.text = responseBody.email
                         }
 
-                        if (responseBody.location.toString() == "") {
+                        if (responseBody.location.isNullOrBlank()) {
                             gitLocationText.text = "-"
                         } else {
                             gitLocationText.text = responseBody.location
                         }
 
-                        if (responseBody.company.toString() == "") {
+                        if (responseBody.company.isNullOrBlank()) {
                             gitCompanyText.text = "-"
                         } else {
                             gitCompanyText.text = responseBody.company
