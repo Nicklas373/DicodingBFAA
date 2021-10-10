@@ -8,5 +8,5 @@
     <item
         android:id="@+id/action_light_mode"
         android:title="@string/light_mode"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

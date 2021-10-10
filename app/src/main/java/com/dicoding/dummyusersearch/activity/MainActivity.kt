@@ -23,8 +23,6 @@ import com.dicoding.dummyusersearch.viewmodel.MainActivityViewModel
 class MainActivity : AppCompatActivity() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
     private lateinit var binding: ActivityMainBinding
-    private val prefsName = "TEMP_ID"
-    private val themeId = "theme_id"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +31,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainActivityViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainActivityViewModel::class.java
+        )
         val layoutManager = LinearLayoutManager(this)
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = findViewById<SearchView>(R.id.gitSearch)
+        val searchView = binding.gitSearch
 
         initTheme()
 
@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
 
-        mainViewModel.isToast.observe(this,{ isToast ->
-          showToast(isToast, mainViewModel.toastReason.toString())
+        mainViewModel.isToast.observe(this, { isToast ->
+            showToast(isToast, mainViewModel.toastReason.value.toString())
         })
 
         binding.listGithubUser.layoutManager = layoutManager
@@ -89,31 +89,31 @@ class MainActivity : AppCompatActivity() {
         when (selectedMode) {
             R.id.action_dark_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefTheme("true")
+                sharedPrefTheme(true)
             }
             R.id.action_light_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefTheme("false")
+                sharedPrefTheme(false)
             }
         }
     }
 
-    private fun sharedPrefTheme(theme: String) {
+    private fun sharedPrefTheme(theme: Boolean) {
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.putString(themeId, theme)
+        editor.putBoolean(themeId, theme)
         editor.apply()
     }
 
-    private fun initTheme(){
+    private fun initTheme() {
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val theme = sharedPref.getString(themeId, "false")
-        if (theme.toString() == "true") {
+        val theme = sharedPref.getBoolean(themeId, false)
+        if (theme) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            sharedPrefTheme("true")
+            sharedPrefTheme(true)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            sharedPrefTheme("false")
+            sharedPrefTheme(false)
         }
     }
 
@@ -136,8 +136,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showToast(isToast: Boolean, toastReason: String) {
-        if (!isToast){
-            Toast.makeText(this, toastReason, Toast.LENGTH_SHORT).show()
+        if (!isToast) {
+            Toast.makeText(this, toastReason, Toast.LENGTH_LONG).show()
         }
+    }
+
+    companion object {
+        private const val prefsName = "TEMP_ID"
+        private const val themeId = "theme_id"
     }
 }

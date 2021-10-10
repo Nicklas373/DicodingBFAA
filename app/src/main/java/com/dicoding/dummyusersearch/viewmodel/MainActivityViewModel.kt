@@ -25,10 +25,6 @@ class MainActivityViewModel : ViewModel() {
     private val _toastReason = MutableLiveData<String>()
     val toastReason: LiveData<String> = _toastReason
 
-    companion object{
-        private const val TAG = "MainViewModel"
-    }
-
     fun findGitHubUserID(query: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getUserQuery(query)
@@ -39,8 +35,13 @@ class MainActivityViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _isToast.value = true
-                    _githubUserArray.value = response.body()?.items
+                    if (response.body()?.items?.isEmpty() == true) {
+                        _isToast.value = false
+                        _toastReason.value = "Data Pencarian Kosong!"
+                    } else {
+                        _isToast.value = true
+                        _githubUserArray.value = response.body()?.items
+                    }
                 } else {
                     _isToast.value = false
                     _toastReason.value = "onFailure: ${response.message()}"
@@ -55,5 +56,9 @@ class MainActivityViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "MainViewModel"
     }
 }

@@ -2,14 +2,9 @@
     <string name="app_name">Github User\'s Search</string>
     <string name="git_image">Gambar Profil</string>
     <string name="git_name">Nama</string>
-    <string name="git_email">Email</string>
-    <string name="git_id">ID</string>
     <string name="git_url">URL</string>
-    <string name="git_detail">Account Information</string>
     <string name="git_follower">Followers</string>
     <string name="git_following">Following</string>
-    <string name="git_comp">Company</string>
-    <string name="git_location">Location</string>
     <string name="git_repo">Repository</string>
     <string name="git_search">Search Here</string>
     <string name="favorite">Favourite</string>

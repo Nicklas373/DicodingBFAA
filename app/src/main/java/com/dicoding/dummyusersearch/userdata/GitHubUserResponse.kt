@@ -1,18 +1,15 @@
 package com.dicoding.dummyusersearch.userdata
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class GitHubUserResponse (
+data class GitHubUserResponse(
 
     @field:SerializedName("total_count")
-    val total_count: Int,
+    val totalCount: String,
 
     @field:SerializedName("incomplete_results")
     val results: String,
 
     @field:SerializedName("items")
     val items: ArrayList<GitHubUserArray>,
-) : Parcelable
+)

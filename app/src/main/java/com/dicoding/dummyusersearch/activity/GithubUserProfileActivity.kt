@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -14,40 +13,31 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.api.ApiConfig
+import com.dicoding.dummyusersearch.databinding.ActivityGithubUserProfileBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class GithubUserProfileActivity : AppCompatActivity() {
 
-    private val prefsName = "TEMP_ID"
-    private val keyId = "key_id"
-    private val themeId = "theme_id"
-
-    companion object {
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-
-        private val TAG = GithubUserProfileActivity::class.java.simpleName
-    }
+    private lateinit var binding: ActivityGithubUserProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_github_user_profile)
 
+        binding = ActivityGithubUserProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
         val gitUser = sharedPref.getString(keyId, "null")
         val sectionsPagerAdapter = SectionPagerActivity(this)
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        val tabs: TabLayout = findViewById(R.id.tabs)
+        val viewPager: ViewPager2 = binding.viewPager
+        val tabs: TabLayout = binding.tabs
 
         if (gitUser != null) {
             getGitHubUserData(gitUser)
@@ -79,31 +69,31 @@ class GithubUserProfileActivity : AppCompatActivity() {
         when (selectedMode) {
             R.id.action_dark_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefTheme("true")
+                sharedPrefTheme(true)
             }
             R.id.action_light_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefTheme("false")
+                sharedPrefTheme(false)
             }
         }
     }
 
-    private fun sharedPrefTheme(theme: String) {
+    private fun sharedPrefTheme(theme: Boolean) {
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.putString(themeId, theme)
+        editor.putBoolean(themeId, theme)
         editor.apply()
     }
 
-    private fun initTheme(){
+    private fun initTheme() {
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val theme = sharedPref.getString(themeId, "false")
-        if (theme.toString() == "true") {
+        val theme: Boolean = sharedPref.getBoolean(themeId, false)
+        if (theme) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            sharedPrefTheme("true")
+            sharedPrefTheme(true)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            sharedPrefTheme("false")
+            sharedPrefTheme(false)
         }
     }
 
@@ -117,16 +107,16 @@ class GithubUserProfileActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        val gitNameText = findViewById<TextView>(R.id.git_name)
-                        val gitEmailText = findViewById<TextView>(R.id.git_mail)
-                        val gitLocationText = findViewById<TextView>(R.id.git_location)
-                        val gitImageDraw = findViewById<CircleImageView>(R.id.git_profile_imageview)
-                        val gitCompanyText = findViewById<TextView>(R.id.git_company)
-                        val gitJoinText = findViewById<TextView>(R.id.git_join)
-                        val gitFollowersText = findViewById<TextView>(R.id.git_followers_count)
-                        val gitFollowingText = findViewById<TextView>(R.id.git_following_count)
-                        val gitRepositoryText = findViewById<TextView>(R.id.git_repository_count)
-                        val dateJoin: String? = responseBody.created_at
+                        val gitNameText = binding.gitName
+                        val gitEmailText = binding.gitMail
+                        val gitLocationText = binding.gitLocation
+                        val gitImageDraw = binding.gitProfileImageview
+                        val gitCompanyText = binding.gitCompany
+                        val gitJoinText = binding.gitJoin
+                        val gitFollowersText = binding.gitFollowersCount
+                        val gitFollowingText = binding.gitFollowingCount
+                        val gitRepositoryText = binding.gitRepositoryCount
+                        val dateJoin: String? = responseBody.createdAt
                         val splitDate = dateJoin?.substring(0, dateJoin.length - 10)
 
                         if (responseBody.name.isNullOrBlank()) {
@@ -156,18 +146,40 @@ class GithubUserProfileActivity : AppCompatActivity() {
                         gitJoinText.text = splitDate
                         gitFollowersText.text = responseBody.followers
                         gitFollowingText.text = responseBody.following
-                        gitRepositoryText.text = responseBody.public_repos
+                        gitRepositoryText.text = responseBody.publicRepos
                         Picasso.get().load(responseBody.avatarUrl).into(gitImageDraw)
                     }
                 } else {
-                    Toast.makeText(this@GithubUserProfileActivity, "onFailure: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@GithubUserProfileActivity,
+                        "onFailure: ${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<GitHubUserJSON>, t: Throwable) {
-                Toast.makeText(this@GithubUserProfileActivity, "onFailure: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@GithubUserProfileActivity,
+                    "onFailure: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
+
+        private val TAG = GithubUserProfileActivity::class.java.simpleName
+        private const val prefsName = "TEMP_ID"
+        private const val keyId = "key_id"
+        private const val themeId = "theme_id"
     }
 }

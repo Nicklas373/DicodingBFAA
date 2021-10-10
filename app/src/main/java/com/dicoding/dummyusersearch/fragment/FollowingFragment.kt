@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,16 +20,11 @@ import retrofit2.Response
 
 class FollowingFragment : Fragment() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
-    private var _binding: FragmentFollowingBinding? = null
-    private val binding get() = _binding!!
-    private val prefsName = "TEMP_ID"
-    private val keyId = "key_id"
+    private lateinit var _binding: FragmentFollowingBinding
+    private val binding get() = _binding
 
-    companion object {
-        private val TAG = FollowingFragment::class.java.simpleName
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root
@@ -59,15 +55,26 @@ class FollowingFragment : Fragment() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        listGitHubUser.clear()
-                        binding.progressBar.visibility = View.GONE
-                        setGitHubUserFollowingData(responseBody)
+                        if (responseBody.isEmpty()) {
+                            listGitHubUser.clear()
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(activity, "Tidak ada daftar following!", Toast.LENGTH_LONG)
+                                .show()
+                        } else {
+                            listGitHubUser.clear()
+                            binding.progressBar.visibility = View.GONE
+                            setGitHubUserFollowingData(responseBody)
+                        }
                     }
                 } else {
+                    Toast.makeText(activity, "onFailure: ${response.message()}", Toast.LENGTH_SHORT)
+                        .show()
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<List<GitHubUserArray>>, t: Throwable) {
+                Toast.makeText(activity, "onFailure: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure: ${t.message}")
                 binding.progressBar.visibility = View.GONE
             }
@@ -82,5 +89,11 @@ class FollowingFragment : Fragment() {
         }
         val adapter = GithubUserAdapter(listReview)
         binding.listGithubUser.adapter = adapter
+    }
+
+    companion object {
+        private val TAG = FollowingFragment::class.java.simpleName
+        private const val prefsName = "TEMP_ID"
+        private const val keyId = "key_id"
     }
 }

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.FollowersFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragment.FollowersFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_github_user"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/item_github_user"
+        android:id="@+id/listGithubUser"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_github_user" />
 </LinearLayout>

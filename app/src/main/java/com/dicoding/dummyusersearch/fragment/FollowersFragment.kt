@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,18 +18,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowersFragment: Fragment() {
+class FollowersFragment : Fragment() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
-    private var _binding: FragmentFollowersBinding? = null
-    private val binding get() = _binding!!
-    private val prefsName = "TEMP_ID"
-    private val keyId = "key_id"
+    private lateinit var _binding: FragmentFollowersBinding
+    private val binding get() = _binding
 
-    companion object {
-        private val TAG = FollowersFragment::class.java.simpleName
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFollowersBinding.inflate(inflater, container, false)
         return binding.root
@@ -59,16 +55,27 @@ class FollowersFragment: Fragment() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        listGitHubUser.clear()
-                        binding.progressBar.visibility = View.GONE
-                        setGitHubUserFollowersData(responseBody)
+                        if (responseBody.isEmpty()) {
+                            listGitHubUser.clear()
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(activity, "Tidak ada daftar followers!", Toast.LENGTH_LONG)
+                                .show()
+                        } else {
+                            listGitHubUser.clear()
+                            binding.progressBar.visibility = View.GONE
+                            setGitHubUserFollowersData(responseBody)
+                        }
                     }
                 } else {
+                    Toast.makeText(activity, "onFailure: ${response.message()}", Toast.LENGTH_LONG)
+                        .show()
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<List<GitHubUserArray>>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message}")
+                Toast.makeText(activity, "onFailure: ${t.message}", Toast.LENGTH_SHORT).show()
                 binding.progressBar.visibility = View.GONE
             }
         })
@@ -82,5 +89,11 @@ class FollowersFragment: Fragment() {
         }
         val adapter = GithubUserAdapter(listReview)
         binding.listGithubUser.adapter = adapter
+    }
+
+    companion object {
+        private val TAG = FollowersFragment::class.java.simpleName
+        private const val prefsName = "TEMP_ID"
+        private const val keyId = "key_id"
     }
 }

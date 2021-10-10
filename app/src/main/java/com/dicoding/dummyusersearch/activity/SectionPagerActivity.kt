@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dicoding.dummyusersearch.fragment.FollowersFragment
 import com.dicoding.dummyusersearch.fragment.FollowingFragment
 
-class SectionPagerActivity (activity: AppCompatActivity) : FragmentStateAdapter(activity) {
+class SectionPagerActivity(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
         return 2
     }

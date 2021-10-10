@@ -12,244 +12,244 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_profile_imageview"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.037" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_profile_imageview"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.037" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_name_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_name_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/git_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/git_name_icon" />
+            <TextView
+                android:id="@+id/git_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_name_icon"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_email_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_mail"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_name_icon"
-            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_email_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_mail"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
+                app:layout_constraintTop_toBottomOf="@id/git_name_icon" />
 
-        <TextView
-            android:id="@+id/git_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:maxLines="3"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_name"
-            app:layout_constraintStart_toEndOf="@+id/git_email_icon" />
+            <TextView
+                android:id="@+id/git_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:maxLines="3"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_email_icon"
+                app:layout_constraintTop_toBottomOf="@id/git_name" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_location_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_location_city_24"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_email_icon"
-            app:layout_constraintStart_toEndOf="@+id/git_profile_imageview" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_location_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_location_city_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
+                app:layout_constraintTop_toBottomOf="@id/git_email_icon" />
 
-        <TextView
-            android:id="@+id/git_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_mail"
-            app:layout_constraintStart_toEndOf="@+id/git_location_icon" />
+            <TextView
+                android:id="@+id/git_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_location_icon"
+                app:layout_constraintTop_toBottomOf="@id/git_mail" />
 
-        <TextView
-            android:id="@+id/git_repository"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/git_repo"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/git_repository"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/git_repo"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
 
-        <TextView
-            android:id="@+id/git_repository_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintRight_toLeftOf="@+id/git_followers_count"
-            app:layout_constraintTop_toBottomOf="@id/git_repository"
-            app:layout_constraintStart_toStartOf="@id/git_repository" />
+            <TextView
+                android:id="@+id/git_repository_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                app:layout_constraintRight_toLeftOf="@+id/git_followers_count"
+                app:layout_constraintStart_toStartOf="@id/git_repository"
+                app:layout_constraintTop_toBottomOf="@id/git_repository" />
 
-        <TextView
-            android:id="@+id/git_followers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="15dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="@string/git_follower"
-            app:layout_constraintLeft_toRightOf="@id/git_repository_count"
-            app:layout_constraintRight_toLeftOf="@id/git_following_count"
-            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
-            app:layout_constraintStart_toEndOf="@id/git_repository" />
+            <TextView
+                android:id="@+id/git_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/git_follower"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/git_repository_count"
+                app:layout_constraintRight_toLeftOf="@id/git_following_count"
+                app:layout_constraintStart_toEndOf="@id/git_repository"
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
 
-        <TextView
-            android:id="@+id/git_followers_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintRight_toLeftOf="@id/git_following_count"
-            app:layout_constraintLeft_toRightOf="@id/git_repository_count"
-            app:layout_constraintTop_toBottomOf="@id/git_followers" />
+            <TextView
+                android:id="@+id/git_followers_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toRightOf="@id/git_repository_count"
+                app:layout_constraintRight_toLeftOf="@id/git_following_count"
+                app:layout_constraintTop_toBottomOf="@id/git_followers" />
 
-        <TextView
-            android:id="@+id/git_following"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/git_following"
-            app:layout_constraintLeft_toRightOf="@id/git_followers"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
-            app:layout_constraintStart_toEndOf="@id/git_followers" />
+            <TextView
+                android:id="@+id/git_following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/git_following"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/git_followers"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/git_followers"
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
 
-        <TextView
-            android:id="@+id/git_following_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:text="@string/PLACEHOLDER"
-            app:layout_constraintLeft_toRightOf="@id/git_followers_count"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_following"
-            app:layout_constraintStart_toStartOf="@id/git_following" />
+            <TextView
+                android:id="@+id/git_following_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toRightOf="@id/git_followers_count"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@id/git_following"
+                app:layout_constraintTop_toBottomOf="@id/git_following" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_company_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_work_24"
-            app:layout_constraintTop_toBottomOf="@id/git_repository_count"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_company_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_work_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/git_repository_count" />
 
-        <TextView
-            android:id="@+id/git_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="15sp"
-            android:text="@string/PLACEHOLDER"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_repository_count"
-            app:layout_constraintStart_toEndOf="@+id/git_company_icon" />
+            <TextView
+                android:id="@+id/git_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_company_icon"
+                app:layout_constraintTop_toBottomOf="@id/git_repository_count" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/git_join_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/ic_baseline_create_24"
-            app:layout_constraintTop_toBottomOf="@id/git_company_icon"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/git_join_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/ic_baseline_create_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/git_company_icon" />
 
-        <TextView
-            android:id="@+id/git_join"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"
-            android:textSize="15sp"
-            android:text="@string/PLACEHOLDER"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/git_company"
-            app:layout_constraintStart_toEndOf="@+id/git_join_icon" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/git_join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/PLACEHOLDER"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/git_join_icon"
+                app:layout_constraintTop_toBottomOf="@id/git_company" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -261,7 +261,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

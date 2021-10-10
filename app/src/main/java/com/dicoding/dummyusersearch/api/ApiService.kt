@@ -1,8 +1,8 @@
 package com.dicoding.dummyusersearch.api
 
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
-import com.dicoding.dummyusersearch.userdata.GitHubUserResponse
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
+import com.dicoding.dummyusersearch.userdata.GitHubUserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
