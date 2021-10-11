@@ -61,6 +61,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
         initTheme()
 
         viewPager.adapter = sectionsPagerAdapter
+        viewPager.offscreenPageLimit = 2
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
