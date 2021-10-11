@@ -10,9 +10,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowingFragmentViewModel : ViewModel() {
-    private val _githubUserArray = MutableLiveData<ArrayList<GitHubUserArray>>()
-    val githubUserArray: LiveData<ArrayList<GitHubUserArray>> = _githubUserArray
+class FollowFragmentViewModel : ViewModel() {
+    private val _githubUserFollowArray = MutableLiveData<ArrayList<GitHubUserArray>>()
+    val githubUserFollowArray: LiveData<ArrayList<GitHubUserArray>> = _githubUserFollowArray
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -22,6 +22,39 @@ class FollowingFragmentViewModel : ViewModel() {
 
     private val _toastReason = MutableLiveData<String>()
     val toastReason: LiveData<String> = _toastReason
+
+    fun getGitHubUserFollowersData(query: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getUserFollowers(query)
+        client.enqueue(object : Callback<ArrayList<GitHubUserArray>> {
+            override fun onResponse(
+                call: Call<ArrayList<GitHubUserArray>>,
+                response: Response<ArrayList<GitHubUserArray>>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    if (response.body()?.isEmpty() == true) {
+                        _isToast.value = false
+                        _toastReason.value = "Tidak ada data followers!"
+                    } else {
+                        _isToast.value = true
+                    }
+                    _githubUserFollowArray.value = response.body()
+                } else {
+                    _isToast.value = false
+                    _toastReason.value = "onFailure: ${response.message()}"
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<GitHubUserArray>>, t: Throwable) {
+                _isLoading.value = false
+                _isToast.value = false
+                _toastReason.value = "onFailure: ${t.message.toString()}"
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
 
     fun getGitHubUserFollowingData(query: String) {
         _isLoading.value = true
@@ -35,12 +68,11 @@ class FollowingFragmentViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (response.body()?.isEmpty() == true) {
                         _isToast.value = false
-                        _toastReason.value = "Tidak ada daftar following!!"
-                        _githubUserArray.value = response.body()
+                        _toastReason.value = "Tidak ada data followers!"
                     } else {
                         _isToast.value = true
-                        _githubUserArray.value = response.body()
                     }
+                    _githubUserFollowArray.value = response.body()
                 } else {
                     _isToast.value = false
                     _toastReason.value = "onFailure: ${response.message()}"
@@ -58,6 +90,6 @@ class FollowingFragmentViewModel : ViewModel() {
     }
 
     companion object {
-        private const val TAG = "FollowingViewModel"
+        private const val TAG = "FollowViewModel"
     }
 }

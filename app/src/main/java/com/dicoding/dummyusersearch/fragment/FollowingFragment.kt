@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.dummyusersearch.adapter.GithubUserAdapter
 import com.dicoding.dummyusersearch.databinding.FragmentFollowingBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
-import com.dicoding.dummyusersearch.viewmodel.FollowingFragmentViewModel
+import com.dicoding.dummyusersearch.viewmodel.FollowFragmentViewModel
 
 class FollowingFragment : Fragment() {
     private lateinit var _binding: FragmentFollowingBinding
@@ -31,7 +31,7 @@ class FollowingFragment : Fragment() {
 
         val followingViewModel =
             ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                FollowingFragmentViewModel::class.java
+                FollowFragmentViewModel::class.java
             )
 
         val layoutManager = LinearLayoutManager(context)
@@ -42,7 +42,7 @@ class FollowingFragment : Fragment() {
         binding.listGithubUser.layoutManager = layoutManager
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
-        followingViewModel.githubUserArray.observe(viewLifecycleOwner, { userArray ->
+        followingViewModel.githubUserFollowArray.observe(viewLifecycleOwner, { userArray ->
             setGitHubUserFollowingData(userArray)
         })
 
@@ -57,6 +57,14 @@ class FollowingFragment : Fragment() {
         followingViewModel.getGitHubUserFollowingData(id.toString())
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
     private fun setGitHubUserFollowingData(listGithubUserID: ArrayList<GitHubUserArray>) {
         val listReview = ArrayList<GitHubUserArray>()
         for (userID in listGithubUserID) {
@@ -64,15 +72,7 @@ class FollowingFragment : Fragment() {
             listReview.add(user)
         }
         val adapter = GithubUserAdapter(listReview)
-        _binding.listGithubUser.adapter = adapter
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+        binding.listGithubUser.adapter = adapter
     }
 
     private fun showToast(isToast: Boolean, toastReason: String) {

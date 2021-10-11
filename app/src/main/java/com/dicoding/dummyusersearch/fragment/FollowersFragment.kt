@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.dummyusersearch.adapter.GithubUserAdapter
 import com.dicoding.dummyusersearch.databinding.FragmentFollowersBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
-import com.dicoding.dummyusersearch.viewmodel.FollowersFragmentViewModel
+import com.dicoding.dummyusersearch.viewmodel.FollowFragmentViewModel
 
 class FollowersFragment : Fragment() {
     private lateinit var _binding: FragmentFollowersBinding
@@ -31,7 +31,7 @@ class FollowersFragment : Fragment() {
 
         val followersViewModel =
             ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                FollowersFragmentViewModel::class.java
+                FollowFragmentViewModel::class.java
             )
 
         val layoutManager = LinearLayoutManager(context)
@@ -42,7 +42,7 @@ class FollowersFragment : Fragment() {
         binding.listGithubUser.layoutManager = layoutManager
         binding.listGithubUser.addItemDecoration(itemDecoration)
 
-        followersViewModel.githubUserArray.observe(viewLifecycleOwner, { userArray ->
+        followersViewModel.githubUserFollowArray.observe(viewLifecycleOwner, { userArray ->
             setGitHubUserFollowersData(userArray)
         })
 
@@ -64,7 +64,7 @@ class FollowersFragment : Fragment() {
             listReview.add(user)
         }
         val adapter = GithubUserAdapter(listReview)
-        _binding.listGithubUser.adapter = adapter
+        binding.listGithubUser.adapter = adapter
     }
 
     private fun showLoading(isLoading: Boolean) {
