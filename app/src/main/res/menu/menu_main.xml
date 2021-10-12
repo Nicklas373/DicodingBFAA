@@ -9,4 +9,8 @@
         android:id="@+id/action_light_mode"
         android:title="@string/light_mode"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_favourite"
+        android:title="@string/favourite"
+        app:showAsAction="never" />
 </menu>

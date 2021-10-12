@@ -1,6 +1,7 @@
 package com.dicoding.dummyusersearch.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
+import com.dicoding.dummyusersearch.database.FavouriteDB
+import com.dicoding.dummyusersearch.database.FavouriteRoomDB
 import com.dicoding.dummyusersearch.databinding.ActivityGithubUserProfileBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
 import com.dicoding.dummyusersearch.viewmodel.GitHubUserProfileActivityViewModel
@@ -36,13 +39,15 @@ class GithubUserProfileActivity : AppCompatActivity() {
             )
 
         val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val gitUser = sharedPref.getString(keyId, "null")
+        val gitUserSp = sharedPref.getString(keyId, "null")
+        val gitHtmlSp = sharedPref.getString(urlId, "null")
+        val gitImageSp = sharedPref.getString(imageId, "null")
         val sectionsPagerAdapter = SectionPagerActivity(this)
         val viewPager: ViewPager2 = binding.viewPager
         val tabs: TabLayout = binding.tabs
 
         userProfileViewModel.githubUserProfileJSON.observe(this, { userJSON ->
-            if (gitUser != null) {
+            if (gitUserSp != null) {
                 setGitHubUserData(userJSON)
             }
         })
@@ -51,9 +56,9 @@ class GithubUserProfileActivity : AppCompatActivity() {
             showToast(isToast, userProfileViewModel.toastReason.value.toString())
         })
 
-        if (gitUser != null) {
-            userProfileViewModel.getGitHubUserData(gitUser)
-            title = gitUser
+        if (gitUserSp != null) {
+            userProfileViewModel.getGitHubUserData(gitUserSp)
+            title = gitUserSp
         } else {
             userProfileViewModel.getGitHubUserData("Null")
         }
@@ -66,6 +71,24 @@ class GithubUserProfileActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+
+        binding.fabAdd.setOnClickListener {
+            val database = FavouriteRoomDB.getDatabase(applicationContext).favouriteDao()
+            val exist = database.checkUserFavourites(gitUserSp.toString())
+
+            if (!exist) {
+                val inputFavData = FavouriteDB(
+                    login = gitUserSp.toString(),
+                    avatarUrl = gitImageSp.toString(),
+                    htmlUrl = gitHtmlSp.toString()
+                )
+                database.insert(inputFavData)
+                Toast.makeText(this, "Done", Toast.LENGTH_LONG).show()
+            } else {
+                database.delete(gitUserSp.toString())
+                Toast.makeText(this, "Done", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -87,6 +110,10 @@ class GithubUserProfileActivity : AppCompatActivity() {
             R.id.action_light_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefTheme(false)
+            }
+            R.id.action_favourite -> {
+                val intent = Intent(this, FavouriteActivity::class.java)
+                startActivity(intent)
             }
         }
     }
@@ -174,5 +201,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
         private const val prefsName = "TEMP_ID"
         private const val keyId = "key_id"
         private const val themeId = "theme_id"
+        private const val imageId = "img_id"
+        private const val urlId = "url_id"
     }
 }

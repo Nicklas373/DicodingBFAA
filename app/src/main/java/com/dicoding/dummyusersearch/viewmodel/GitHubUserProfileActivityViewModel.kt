@@ -29,9 +29,8 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
                 response: Response<GitHubUserJSON>
             ) {
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        _githubUserProfileJSON.value = responseBody
+                    if (response.body() != null) {
+                        _githubUserProfileJSON.value = response.body()
                     }
                 } else {
                     _isToast.value = false

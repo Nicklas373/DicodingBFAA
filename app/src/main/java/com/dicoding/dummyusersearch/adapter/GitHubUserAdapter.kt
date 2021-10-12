@@ -57,20 +57,24 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
             }
             holder.itemView.setOnClickListener {
                 val intent = Intent(holder.itemView.context, GithubUserProfileActivity::class.java)
-                sharedPrefID(git_username)
+                sharedPrefID(git_username, git_image, git_id)
                 holder.itemView.context.startActivity(intent)
             }
         }
     }
 
-    private fun sharedPrefID(id: String) {
+    private fun sharedPrefID(id: String, image: String, html: String) {
         val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.putString(keyId, id)
+        editor.putString(imageId, image)
+        editor.putString(urlId, html)
         editor.apply()
     }
 
     companion object {
         private const val prefsName = "TEMP_ID"
         private const val keyId = "key_id"
+        private const val imageId = "img_id"
+        private const val urlId = "url_id"
     }
 }

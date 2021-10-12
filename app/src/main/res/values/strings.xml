@@ -13,5 +13,6 @@
     <string name="light_mode">Light Mode</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
+    <string name="favourite">Favourite</string>
     <string name="PLACEHOLDER">PLACEHOLDER</string>
 </resources>

@@ -2,6 +2,7 @@ package com.dicoding.dummyusersearch.activity
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
@@ -94,6 +95,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_light_mode -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefTheme(false)
+            }
+            R.id.action_favourite -> {
+                val intent = Intent(this, FavouriteActivity::class.java)
+                startActivity(intent)
             }
         }
     }
