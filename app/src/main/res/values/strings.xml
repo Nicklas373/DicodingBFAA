@@ -14,5 +14,8 @@
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
     <string name="favourite">Favourite</string>
+    <string name="dialog_yes">Ya</string>
+    <string name="dialog_no">Tidak</string>
+    <string name="delete">Delete</string>
     <string name="PLACEHOLDER">PLACEHOLDER</string>
 </resources>

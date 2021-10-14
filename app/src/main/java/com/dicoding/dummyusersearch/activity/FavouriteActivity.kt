@@ -35,9 +35,10 @@ class FavouriteActivity : AppCompatActivity() {
                 FavouriteDBViewModel::class.java
             )
 
-        favouriteViewModel.subscribeFavResult(this).observe(this, { favResult ->
-            setGitHubUserFavouriteData(favResult)
-        })
+        favouriteViewModel.getGitHubUserFavouriteData(this)
+            .observe(this, { githubUserFavouriteList ->
+                setGitHubUserFavouriteData(githubUserFavouriteList)
+            })
 
     }
 

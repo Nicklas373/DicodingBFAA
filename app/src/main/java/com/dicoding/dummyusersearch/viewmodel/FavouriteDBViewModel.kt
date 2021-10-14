@@ -9,16 +9,17 @@ import com.dicoding.dummyusersearch.database.FavouriteRoomDB
 
 class FavouriteDBViewModel : ViewModel() {
 
-    private lateinit var favResult: LiveData<List<FavouriteDB>>
-    private lateinit var favDB: LiveData<List<FavouriteDB>>
+    private lateinit var githubUserFavouriteList: LiveData<List<FavouriteDB>>
+    private lateinit var githubUserFavouriteResult: LiveData<List<FavouriteDB>>
 
-    fun subscribeFavResult(context: Context): LiveData<List<FavouriteDB>> {
+    fun getGitHubUserFavouriteData(context: Context): LiveData<List<FavouriteDB>> {
         val database = FavouriteRoomDB.getDatabase(context.applicationContext).favouriteDao()
-        favResult = database.getAllFavourites().map { data ->
-            data.reversed().map { FavouriteDB(it.id, it.login, it.avatarUrl, it.htmlUrl) }
+
+        githubUserFavouriteList = database.getAllFavourites().map { data ->
+            data.reversed().map { FavouriteDB(it.id, it.login, it.htmlUrl, it.avatarUrl) }
         }
 
-        favDB = favResult
-        return favDB
+        githubUserFavouriteResult = githubUserFavouriteList
+        return githubUserFavouriteResult
     }
 }

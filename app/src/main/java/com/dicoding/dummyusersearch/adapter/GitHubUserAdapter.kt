@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity
+import com.dicoding.dummyusersearch.database.FavouriteDB
+import com.dicoding.dummyusersearch.database.FavouriteRoomDB
 import com.dicoding.dummyusersearch.databinding.ItemGithubUserBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.squareup.picasso.Picasso
@@ -40,12 +43,72 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
             binding.gitUrlView.text = git_id
             Picasso.get().load(git_image).into(binding.gitImageView)
             binding.gitFavourite.setOnClickListener {
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Favourite $git_username !",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
+                val database =
+                    FavouriteRoomDB.getDatabase(itemView.context.applicationContext).favouriteDao()
+                val exist = database.checkUserFavourites(binding.gitUsernameView.text.toString())
+
+                if (!exist) {
+                    val title = "Favourite"
+                    val message =
+                        "${binding.gitUsernameView.text} tidak ada di daftar favourite! Apakah anda ingin menambahkan ke daftar favourite ?"
+                    val alertDialogBuilder = AlertDialog.Builder(itemView.context)
+                    with(alertDialogBuilder) {
+                        setTitle(title)
+                        setMessage(message)
+                        setCancelable(false)
+                        setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                            val githubUserDBFavourite =
+                                FavouriteRoomDB.getDatabase(context.applicationContext)
+                                    .favouriteDao()
+                            val inputFavData = FavouriteDB(
+                                login = binding.gitUsernameView.text.toString(),
+                                avatarUrl = git_image,
+                                htmlUrl = binding.gitUrlView.text.toString()
+                            )
+                            githubUserDBFavourite.insert(inputFavData)
+                            Toast.makeText(
+                                context,
+                                "${binding.gitUsernameView.text} sudah di tambahkan ke daftar favourite !",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+                        setNegativeButton(context.resources.getString(R.string.dialog_no))
+                        { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    }
+                    val alertDialog = alertDialogBuilder.create()
+                    alertDialog.show()
+                } else {
+                    val title = "Favourite"
+                    val message =
+                        "${binding.gitUsernameView.text} sudah ada di daftar favourite! Apakah anda ingin menghapus dari daftar favourite ?"
+                    val alertDialogBuilder = AlertDialog.Builder(itemView.context)
+                    with(alertDialogBuilder) {
+                        setTitle(title)
+                        setMessage(message)
+                        setCancelable(false)
+                        setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                            val githubUserDBFavourite =
+                                FavouriteRoomDB.getDatabase(context.applicationContext)
+                                    .favouriteDao()
+                            githubUserDBFavourite.delete(binding.gitUsernameView.text.toString())
+                            Toast.makeText(
+                                context,
+                                "${binding.gitUsernameView.text} sudah di hapus dari favourite",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+                        setNegativeButton(context.resources.getString(R.string.dialog_no))
+                        { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    }
+                    val alertDialog = alertDialogBuilder.create()
+                    alertDialog.show()
+                }
             }
             binding.gitShare.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {

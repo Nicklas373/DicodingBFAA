@@ -6,10 +6,13 @@ import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.activity.GithubUserProfileActivity
 import com.dicoding.dummyusersearch.database.FavouriteDB
-import com.dicoding.dummyusersearch.databinding.ItemGithubUserBinding
+import com.dicoding.dummyusersearch.database.FavouriteRoomDB
+import com.dicoding.dummyusersearch.databinding.ItemGithubUserFavouriteBinding
 import com.squareup.picasso.Picasso
 
 class FavouriteUserAdapter(private val listUser: List<FavouriteDB>) :
@@ -19,20 +22,47 @@ class FavouriteUserAdapter(private val listUser: List<FavouriteDB>) :
 
     override fun getItemCount(): Int = listUser.size
 
-    inner class ViewHolder(private val binding: ItemGithubUserBinding) :
+    inner class ViewHolder(private val binding: ItemGithubUserFavouriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(fav: FavouriteDB) {
             sharedPref = itemView.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
             binding.gitUsernameView.text = fav.login
-            binding.gitUrlView.text = fav.avatarUrl
-            Picasso.get().load(fav.htmlUrl).into(binding.gitImageView)
-            binding.gitFavourite.setOnClickListener {
-                Toast.makeText(
-                    itemView.context,
-                    "Favourite ${fav.login} !",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
+            binding.gitUrlView.text = fav.htmlUrl
+            Picasso.get().load(fav.avatarUrl).into(binding.gitImageView)
+            binding.gitDelete.setOnClickListener {
+                val database =
+                    FavouriteRoomDB.getDatabase(itemView.context.applicationContext).favouriteDao()
+                val exist = database.checkUserFavourites(fav.login.toString())
+
+                if (exist) {
+                    val title = "Favourite"
+                    val message =
+                        "Apakah anda ingin menghapus ${fav.login.toString()} dari daftar favourite?"
+                    val alertDialogBuilder = AlertDialog.Builder(itemView.context)
+                    with(alertDialogBuilder) {
+                        setTitle(title)
+                        setMessage(message)
+                        setCancelable(false)
+                        setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                            val githubUserDBFavourite =
+                                FavouriteRoomDB.getDatabase(context.applicationContext)
+                                    .favouriteDao()
+                            githubUserDBFavourite.delete(fav.login.toString())
+                            Toast.makeText(
+                                context,
+                                "${fav.login.toString()} sudah di hapus dari favourite",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+                        setNegativeButton(context.resources.getString(R.string.dialog_no))
+                        { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    }
+                    val alertDialog = alertDialogBuilder.create()
+                    alertDialog.show()
+                }
             }
             binding.gitShare.setOnClickListener {
                 val sendIntent: Intent = Intent().apply {
@@ -61,7 +91,11 @@ class FavouriteUserAdapter(private val listUser: List<FavouriteDB>) :
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view =
-            ItemGithubUserBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+            ItemGithubUserFavouriteBinding.inflate(
+                LayoutInflater.from(viewGroup.context),
+                viewGroup,
+                false
+            )
         return ViewHolder(view)
     }
 

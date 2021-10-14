@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -73,20 +74,71 @@ class GithubUserProfileActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0f
 
         binding.fabAdd.setOnClickListener {
-            val database = FavouriteRoomDB.getDatabase(applicationContext).favouriteDao()
+            val database =
+                FavouriteRoomDB.getDatabase(this).favouriteDao()
             val exist = database.checkUserFavourites(gitUserSp.toString())
 
             if (!exist) {
-                val inputFavData = FavouriteDB(
-                    login = gitUserSp.toString(),
-                    avatarUrl = gitImageSp.toString(),
-                    htmlUrl = gitHtmlSp.toString()
-                )
-                database.insert(inputFavData)
-                Toast.makeText(this, "Done", Toast.LENGTH_LONG).show()
+                val title = "Favourite"
+                val message =
+                    "${gitUserSp.toString()} tidak ada di daftar favourite! Apakah anda ingin menambahkan ke daftar favourite ?"
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                with(alertDialogBuilder) {
+                    setTitle(title)
+                    setMessage(message)
+                    setCancelable(false)
+                    setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                        val githubUserDBFavourite =
+                            FavouriteRoomDB.getDatabase(this@GithubUserProfileActivity)
+                                .favouriteDao()
+                        val inputFavData = FavouriteDB(
+                            login = gitUserSp.toString(),
+                            avatarUrl = gitImageSp.toString(),
+                            htmlUrl = gitHtmlSp.toString()
+                        )
+                        githubUserDBFavourite.insert(inputFavData)
+                        Toast.makeText(
+                            context,
+                            "${gitUserSp.toString()} sudah di tambahkan ke daftar favourite !",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                    setNegativeButton(context.resources.getString(R.string.dialog_no))
+                    { dialog, _ ->
+                        dialog.cancel()
+                    }
+                }
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
             } else {
-                database.delete(gitUserSp.toString())
-                Toast.makeText(this, "Done", Toast.LENGTH_LONG).show()
+                val title = "Favourite"
+                val message =
+                    "${gitUserSp.toString()} sudah ada di daftar favourite! Apakah anda ingin menghapus dari daftar favourite ?"
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                with(alertDialogBuilder) {
+                    setTitle(title)
+                    setMessage(message)
+                    setCancelable(false)
+                    setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                        val githubUserDBFavourite =
+                            FavouriteRoomDB.getDatabase(context.applicationContext)
+                                .favouriteDao()
+                        githubUserDBFavourite.delete(gitUserSp.toString())
+                        Toast.makeText(
+                            context,
+                            "${gitUserSp.toString()} sudah di hapus dari favourite",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                    setNegativeButton(context.resources.getString(R.string.dialog_no))
+                    { dialog, _ ->
+                        dialog.cancel()
+                    }
+                }
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
             }
         }
     }
