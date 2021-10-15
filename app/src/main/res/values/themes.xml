@@ -18,10 +18,12 @@
         <item name="android:itemTextAppearance">@style/TextAppearance</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">#808080</item>
     </style>
+
     <style name="TextAppearance" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="actionMenuTextColor">@color/black</item>
         <item name="android:actionMenuTextColor">@color/black</item>
