@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Github User\'s Search</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="delete">Delete</string>
+    <string name="dialog_no">Tidak</string>
+    <string name="dialog_yes">Ya</string>
+    <string name="favourite">Favourite</string>
     <string name="git_image">Gambar Profil</string>
     <string name="git_name">Nama</string>
     <string name="git_url">URL</string>
@@ -7,15 +12,12 @@
     <string name="git_following">Following</string>
     <string name="git_repo">Repository</string>
     <string name="git_search">Search Here</string>
-    <string name="favorite">Favourite</string>
-    <string name="share">Share</string>
-    <string name="dark_mode">Dark Mode</string>
     <string name="light_mode">Light Mode</string>
+    <string name="settings">Settings</string>
+    <string name="share">Share</string>
+    <string name="splashscreen">Splashscreen</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
-    <string name="favourite">Favourite</string>
-    <string name="dialog_yes">Ya</string>
-    <string name="dialog_no">Tidak</string>
-    <string name="delete">Delete</string>
+    <string name="theme">Theme</string>
     <string name="PLACEHOLDER">PLACEHOLDER</string>
 </resources>

@@ -2,15 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_dark_mode"
-        android:title="@string/dark_mode"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_light_mode"
-        android:title="@string/light_mode"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_favourite"
         android:title="@string/favourite"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings"
         app:showAsAction="never" />
 </menu>

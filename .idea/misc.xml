@@ -9,6 +9,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_create_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_delete_24.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_favorite_24.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_favorite_border_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_location_city_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_mail.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_search.xml" value="0.11927083333333334" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_mail.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_search.xml" value="0.11927083333333334" />
@@ -30,6 +32,8 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_favourite.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_github_user_profile.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_splashscreen.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/fragment_followers.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/fragment_following.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/item_github_user.xml" value="0.13333333333333333" />

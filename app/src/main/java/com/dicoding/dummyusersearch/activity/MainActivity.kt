@@ -3,7 +3,6 @@ package com.dicoding.dummyusersearch.activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,14 +11,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.adapter.GithubUserAdapter
 import com.dicoding.dummyusersearch.databinding.ActivityMainBinding
+import com.dicoding.dummyusersearch.datastore.SettingPreferences
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.dicoding.dummyusersearch.viewmodel.MainActivityViewModel
+import com.dicoding.dummyusersearch.viewmodel.SettingPreferencesViewModel
+import com.dicoding.dummyusersearch.viewmodel.ViewModelFactory
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
     private val listGitHubUser = ArrayList<GitHubUserArray>()
@@ -32,15 +39,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             MainActivityViewModel::class.java
+        )
+        val settingsViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            SettingPreferencesViewModel::class.java
         )
         val layoutManager = LinearLayoutManager(this)
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = binding.gitSearch
 
-        initTheme()
+        settingsViewModel.getThemeSettings().observe(this,
+            { isDarkModeActive: Boolean ->
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            })
 
         mainViewModel.githubUserArray.observe(this, { userArray ->
             setGitHubUserData(userArray)
@@ -88,37 +106,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setMode(selectedMode: Int) {
         when (selectedMode) {
-            R.id.action_dark_mode -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefTheme(true)
-            }
-            R.id.action_light_mode -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefTheme(false)
-            }
             R.id.action_favourite -> {
                 val intent = Intent(this, FavouriteActivity::class.java)
                 startActivity(intent)
             }
-        }
-    }
-
-    private fun sharedPrefTheme(theme: Boolean) {
-        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.putBoolean(themeId, theme)
-        editor.apply()
-    }
-
-    private fun initTheme() {
-        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val theme = sharedPref.getBoolean(themeId, false)
-        if (theme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            sharedPrefTheme(true)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            sharedPrefTheme(false)
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -144,10 +139,5 @@ class MainActivity : AppCompatActivity() {
         if (!isToast) {
             Toast.makeText(this, toastReason, Toast.LENGTH_LONG).show()
         }
-    }
-
-    companion object {
-        private const val prefsName = "TEMP_ID"
-        private const val themeId = "theme_id"
     }
 }
