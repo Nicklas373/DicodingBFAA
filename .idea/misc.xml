@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/bg_rounded.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_account_circle_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_add_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_close_24.xml" value="0.11927083333333334" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_share_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_baseline_work_24.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable-night/ic_launcher_background.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/bg_rounded.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.19166666666666668" />
@@ -31,7 +33,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_favourite.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_github_user_profile.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_settings.xml" value="0.22" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/activity_splashscreen.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/DummyUserSearch/app/src/main/res/layout/fragment_followers.xml" value="0.17552083333333332" />

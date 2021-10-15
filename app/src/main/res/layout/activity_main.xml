@@ -19,7 +19,9 @@
         app:iconifiedByDefault="false"
         app:queryHint="Search Here"
         app:searchIcon="@drawable/ic_baseline_search"
-        app:showAsAction="collapseActionView|always" />
+        app:showAsAction="collapseActionView|always"
+        android:submitBackground="@drawable/bg_rounded"
+        android:background="@drawable/bg_rounded"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
