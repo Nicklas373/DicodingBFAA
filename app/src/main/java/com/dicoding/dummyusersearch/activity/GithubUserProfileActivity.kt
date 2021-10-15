@@ -2,7 +2,6 @@ package com.dicoding.dummyusersearch.activity
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +9,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
@@ -64,14 +62,14 @@ class GithubUserProfileActivity : AppCompatActivity() {
             userProfileViewModel.getGitHubUserData("Null")
         }
 
-        initTheme()
-
         viewPager.adapter = sectionsPagerAdapter
         viewPager.offscreenPageLimit = 2
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+
+        checkFavourite(gitUserSp.toString())
 
         binding.fabAdd.setOnClickListener {
             val database =
@@ -103,6 +101,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         )
                             .show()
+                        binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_24)
                     }
                     setNegativeButton(context.resources.getString(R.string.dialog_no))
                     { dialog, _ ->
@@ -131,6 +130,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         )
                             .show()
+                        binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                     }
                     setNegativeButton(context.resources.getString(R.string.dialog_no))
                     { dialog, _ ->
@@ -155,37 +155,14 @@ class GithubUserProfileActivity : AppCompatActivity() {
 
     private fun setMode(selectedMode: Int) {
         when (selectedMode) {
-            R.id.action_dark_mode -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefTheme(true)
-            }
-            R.id.action_light_mode -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefTheme(false)
-            }
             R.id.action_favourite -> {
                 val intent = Intent(this, FavouriteActivity::class.java)
                 startActivity(intent)
             }
-        }
-    }
-
-    private fun sharedPrefTheme(theme: Boolean) {
-        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.putBoolean(themeId, theme)
-        editor.apply()
-    }
-
-    private fun initTheme() {
-        val sharedPref = this.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
-        val theme: Boolean = sharedPref.getBoolean(themeId, false)
-        if (theme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            sharedPrefTheme(true)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            sharedPrefTheme(false)
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -243,6 +220,18 @@ class GithubUserProfileActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkFavourite(username: String) {
+        val database =
+            FavouriteRoomDB.getDatabase(this).favouriteDao()
+        val exist = database.checkUserFavourites(username)
+
+        if (exist) {
+            binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_24)
+        } else {
+            binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
+    }
+
     companion object {
         @StringRes
         private val TAB_TITLES = intArrayOf(
@@ -252,7 +241,6 @@ class GithubUserProfileActivity : AppCompatActivity() {
 
         private const val prefsName = "TEMP_ID"
         private const val keyId = "key_id"
-        private const val themeId = "theme_id"
         private const val imageId = "img_id"
         private const val urlId = "url_id"
     }

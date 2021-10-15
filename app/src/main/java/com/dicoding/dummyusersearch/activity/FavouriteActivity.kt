@@ -1,6 +1,10 @@
 package com.dicoding.dummyusersearch.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -37,9 +41,36 @@ class FavouriteActivity : AppCompatActivity() {
 
         favouriteViewModel.getGitHubUserFavouriteData(this)
             .observe(this, { githubUserFavouriteList ->
-                setGitHubUserFavouriteData(githubUserFavouriteList)
+                if (githubUserFavouriteList.isEmpty()) {
+                    Toast.makeText(this, "Daftar favourite anda kosong!", Toast.LENGTH_LONG).show()
+                } else {
+                    setGitHubUserFavouriteData(githubUserFavouriteList)
+                }
             })
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        setMode(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setMode(selectedMode: Int) {
+        when (selectedMode) {
+            R.id.action_favourite -> {
+                val intent = Intent(this, FavouriteActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun setGitHubUserFavouriteData(listGithubUserID: List<FavouriteDB>) {

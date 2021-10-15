@@ -46,7 +46,6 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
                 val database =
                     FavouriteRoomDB.getDatabase(itemView.context.applicationContext).favouriteDao()
                 val exist = database.checkUserFavourites(binding.gitUsernameView.text.toString())
-
                 if (!exist) {
                     val title = "Favourite"
                     val message =
