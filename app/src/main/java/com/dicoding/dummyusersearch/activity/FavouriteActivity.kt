@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +19,7 @@ import com.dicoding.dummyusersearch.viewmodel.FavouriteDBViewModel
 class FavouriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavouriteBinding
+    private val listReview = ArrayList<FavouriteDB>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,8 @@ class FavouriteActivity : AppCompatActivity() {
 
         title = resources.getString(R.string.favourite)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         val favouriteViewModel =
             ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
                 FavouriteDBViewModel::class.java
@@ -42,12 +46,14 @@ class FavouriteActivity : AppCompatActivity() {
         favouriteViewModel.getGitHubUserFavouriteData(this)
             .observe(this, { githubUserFavouriteList ->
                 if (githubUserFavouriteList.isEmpty()) {
+                    listReview.clear()
+                    binding.listGithubUser.adapter = null
                     Toast.makeText(this, "Daftar favourite anda kosong!", Toast.LENGTH_LONG).show()
                 } else {
                     setGitHubUserFavouriteData(githubUserFavouriteList)
                 }
+                binding.progressBar.visibility = View.GONE
             })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
