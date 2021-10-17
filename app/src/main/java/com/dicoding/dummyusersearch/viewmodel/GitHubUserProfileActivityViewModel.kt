@@ -15,6 +15,9 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
     private val _githubUserProfileJSON = MutableLiveData<GitHubUserJSON>()
     val githubUserProfileJSON: LiveData<GitHubUserJSON> = _githubUserProfileJSON
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _isToast = MutableLiveData<Boolean>()
     val isToast: LiveData<Boolean> = _isToast
 
@@ -22,6 +25,7 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
     val toastReason: LiveData<String> = _toastReason
 
     fun getGitHubUserData(query: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUserDetail(query)
         client.enqueue(object : Callback<GitHubUserJSON> {
             override fun onResponse(
@@ -30,9 +34,11 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
+                        _isLoading.value = false
                         _githubUserProfileJSON.value = response.body()
                     }
                 } else {
+                    _isLoading.value = true
                     _isToast.value = false
                     _toastReason.value = "onFailure: ${response.message()}"
                     Log.e(TAG, "onFailure: ${response.message()}")
@@ -40,6 +46,7 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<GitHubUserJSON>, t: Throwable) {
+                _isLoading.value = true
                 _isToast.value = false
                 _toastReason.value = "onFailure: ${t.message}"
                 Log.e(TAG, "onFailure: ${t.message}")

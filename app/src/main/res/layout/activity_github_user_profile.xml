@@ -16,6 +16,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.455"
+                tools:visibility="visible" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_profile_imageview"
                 android:layout_width="110dp"
@@ -23,10 +35,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.037" />
+                app:layout_constraintVertical_bias="0.037"
+                tools:visibility="visible" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_name_icon"
@@ -36,10 +50,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_account_circle_24"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_name"
@@ -51,10 +67,12 @@
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_name_icon"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_email_icon"
@@ -64,10 +82,12 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_mail"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
-                app:layout_constraintTop_toBottomOf="@id/git_name_icon" />
+                app:layout_constraintTop_toBottomOf="@id/git_name_icon"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_mail"
@@ -80,10 +100,12 @@
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_email_icon"
-                app:layout_constraintTop_toBottomOf="@id/git_name" />
+                app:layout_constraintTop_toBottomOf="@id/git_name"
+                tools:visibility="visible" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_location_icon"
@@ -93,10 +115,12 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_location_city_24"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_profile_imageview"
-                app:layout_constraintTop_toBottomOf="@id/git_email_icon" />
+                app:layout_constraintTop_toBottomOf="@id/git_email_icon"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_location"
@@ -108,10 +132,12 @@
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_location_icon"
-                app:layout_constraintTop_toBottomOf="@id/git_mail" />
+                app:layout_constraintTop_toBottomOf="@id/git_mail"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_repository"
@@ -123,10 +149,12 @@
                 android:text="@string/git_repo"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_repository_count"
@@ -137,9 +165,11 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
+                android:visibility="gone"
                 app:layout_constraintRight_toLeftOf="@+id/git_followers_count"
                 app:layout_constraintStart_toStartOf="@id/git_repository"
-                app:layout_constraintTop_toBottomOf="@id/git_repository" />
+                app:layout_constraintTop_toBottomOf="@id/git_repository"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_followers"
@@ -151,10 +181,12 @@
                 android:text="@string/git_follower"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@id/git_repository_count"
                 app:layout_constraintRight_toLeftOf="@id/git_following_count"
                 app:layout_constraintStart_toEndOf="@id/git_repository"
-                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_followers_count"
@@ -165,9 +197,11 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@id/git_repository_count"
                 app:layout_constraintRight_toLeftOf="@id/git_following_count"
-                app:layout_constraintTop_toBottomOf="@id/git_followers" />
+                app:layout_constraintTop_toBottomOf="@id/git_followers"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_following"
@@ -179,10 +213,12 @@
                 android:text="@string/git_following"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@id/git_followers"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@id/git_followers"
-                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview" />
+                app:layout_constraintTop_toBottomOf="@id/git_profile_imageview"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_following_count"
@@ -193,10 +229,12 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@id/git_followers_count"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="@id/git_following"
-                app:layout_constraintTop_toBottomOf="@id/git_following" />
+                app:layout_constraintTop_toBottomOf="@id/git_following"
+                tools:visibility="visible" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_company_icon"
@@ -206,8 +244,10 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_work_24"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/git_repository_count" />
+                app:layout_constraintTop_toBottomOf="@id/git_repository_count"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_company"
@@ -219,10 +259,12 @@
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_company_icon"
-                app:layout_constraintTop_toBottomOf="@id/git_repository_count" />
+                app:layout_constraintTop_toBottomOf="@id/git_repository_count"
+                tools:visibility="visible" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/git_join_icon"
@@ -232,8 +274,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/ic_baseline_create_24"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/git_company_icon" />
+                app:layout_constraintTop_toBottomOf="@id/git_company_icon"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/git_join"
@@ -245,10 +289,12 @@
                 android:text="@string/PLACEHOLDER"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/git_join_icon"
-                app:layout_constraintTop_toBottomOf="@id/git_company" />
+                app:layout_constraintTop_toBottomOf="@id/git_company"
+                tools:visibility="visible" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_add"

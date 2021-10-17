@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -53,6 +54,10 @@ class GithubUserProfileActivity : AppCompatActivity() {
 
         userProfileViewModel.isToast.observe(this, { isToast ->
             showToast(isToast, userProfileViewModel.toastReason.value.toString())
+        })
+
+        userProfileViewModel.isLoading.observe(this, {
+            showLoading(it)
         })
 
         if (gitUserSp != null) {
@@ -229,6 +234,27 @@ class GithubUserProfileActivity : AppCompatActivity() {
             binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_24)
         } else {
             binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.gitProfileImageview.visibility = View.VISIBLE
+            binding.gitName.visibility = View.VISIBLE
+            binding.gitNameIcon.visibility = View.VISIBLE
+            binding.gitMail.visibility = View.VISIBLE
+            binding.gitEmailIcon.visibility = View.VISIBLE
+            binding.gitLocation.visibility = View.VISIBLE
+            binding.gitLocationIcon.visibility = View.VISIBLE
+            binding.gitRepository.visibility = View.VISIBLE
+            binding.gitRepositoryCount.visibility = View.VISIBLE
+            binding.gitFollowers.visibility = View.VISIBLE
+            binding.gitFollowersCount.visibility = View.VISIBLE
+            binding.gitFollowing.visibility = View.VISIBLE
+            binding.gitFollowingCount.visibility = View.VISIBLE
         }
     }
 
