@@ -64,11 +64,13 @@ Aplikasi ini memiliki beberapa fitur sebagai berikut:
   Menampilkan pengaturan berupa pengubah tema (Dark mode / Light mode) dan pengaturan untuk fitur splashscreen aplikasi
 
 ## Screenshoot:
-- [![Screenshoot_1](https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg)
-- [![Screenshoot_2](https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg]
-- [![Screenshoot_3](https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg]
-- [![Screenshoot_8](https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-08.jpg]
-- [![Screenshoot_9](https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-09.jpg]
+<p align="center">
+- <img width="480" height="800" src="(https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg"><br>
+- <img width="480" height="800" src="(https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg"><br>
+- <img width="480" height="800" src="(https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg"><br>
+- <img width="480" height="800" src="(https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-08.jpg"><br>
+- <img width="480" height="800" src="(https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-09.jpg"><br>
+</p>
 
 
 # HANA-CI Build Project || 2016-2021
