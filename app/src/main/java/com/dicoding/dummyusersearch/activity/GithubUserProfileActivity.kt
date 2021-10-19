@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dummyusersearch.R
-import com.dicoding.dummyusersearch.database.FavouriteDB
 import com.dicoding.dummyusersearch.database.FavouriteRoomDB
 import com.dicoding.dummyusersearch.databinding.ActivityGithubUserProfileBinding
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
@@ -52,6 +51,13 @@ class GithubUserProfileActivity : AppCompatActivity() {
             }
         })
 
+        if (gitUserSp != null) {
+            userProfileViewModel.getGitHubUserData(gitUserSp)
+            title = gitUserSp
+        } else {
+            userProfileViewModel.getGitHubUserData("Null")
+        }
+
         userProfileViewModel.isToast.observe(this, { isToast ->
             showToast(isToast, userProfileViewModel.toastReason.value.toString())
         })
@@ -59,13 +65,6 @@ class GithubUserProfileActivity : AppCompatActivity() {
         userProfileViewModel.isLoading.observe(this, {
             showLoading(it)
         })
-
-        if (gitUserSp != null) {
-            userProfileViewModel.getGitHubUserData(gitUserSp)
-            title = gitUserSp
-        } else {
-            userProfileViewModel.getGitHubUserData("Null")
-        }
 
         viewPager.adapter = sectionsPagerAdapter
         viewPager.offscreenPageLimit = 2
@@ -77,74 +76,14 @@ class GithubUserProfileActivity : AppCompatActivity() {
         checkFavourite(gitUserSp.toString())
 
         binding.fabAdd.setOnClickListener {
-            val database =
-                FavouriteRoomDB.getDatabase(this).favouriteDao()
+            val database = FavouriteRoomDB.getDatabase(this).favouriteDao()
             val exist = database.checkUserFavourites(gitUserSp.toString())
-
-            if (!exist) {
-                val title = "Favourite"
-                val message =
-                    "${gitUserSp.toString()} tidak ada di daftar favourite! Apakah anda ingin menambahkan ke daftar favourite ?"
-                val alertDialogBuilder = AlertDialog.Builder(this)
-                with(alertDialogBuilder) {
-                    setTitle(title)
-                    setMessage(message)
-                    setCancelable(false)
-                    setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
-                        val githubUserDBFavourite =
-                            FavouriteRoomDB.getDatabase(this@GithubUserProfileActivity)
-                                .favouriteDao()
-                        val inputFavData = FavouriteDB(
-                            login = gitUserSp.toString(),
-                            avatarUrl = gitImageSp.toString(),
-                            htmlUrl = gitHtmlSp.toString()
-                        )
-                        githubUserDBFavourite.insert(inputFavData)
-                        Toast.makeText(
-                            context,
-                            "${gitUserSp.toString()} sudah di tambahkan ke daftar favourite !",
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
-                        binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_24)
-                    }
-                    setNegativeButton(context.resources.getString(R.string.dialog_no))
-                    { dialog, _ ->
-                        dialog.cancel()
-                    }
-                }
-                val alertDialog = alertDialogBuilder.create()
-                alertDialog.show()
-            } else {
-                val title = "Favourite"
-                val message =
-                    "${gitUserSp.toString()} sudah ada di daftar favourite! Apakah anda ingin menghapus dari daftar favourite ?"
-                val alertDialogBuilder = AlertDialog.Builder(this)
-                with(alertDialogBuilder) {
-                    setTitle(title)
-                    setMessage(message)
-                    setCancelable(false)
-                    setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
-                        val githubUserDBFavourite =
-                            FavouriteRoomDB.getDatabase(context.applicationContext)
-                                .favouriteDao()
-                        githubUserDBFavourite.delete(gitUserSp.toString())
-                        Toast.makeText(
-                            context,
-                            "${gitUserSp.toString()} sudah di hapus dari favourite",
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
-                        binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                    }
-                    setNegativeButton(context.resources.getString(R.string.dialog_no))
-                    { dialog, _ ->
-                        dialog.cancel()
-                    }
-                }
-                val alertDialog = alertDialogBuilder.create()
-                alertDialog.show()
-            }
+            createAlertDialog(
+                !exist,
+                gitUserSp.toString(),
+                gitImageSp.toString(),
+                gitHtmlSp.toString()
+            )
         }
     }
 
@@ -256,6 +195,64 @@ class GithubUserProfileActivity : AppCompatActivity() {
             binding.gitFollowing.visibility = View.VISIBLE
             binding.gitFollowingCount.visibility = View.VISIBLE
         }
+    }
+
+    private fun createAlertDialog(
+        state: Boolean,
+        userId: String,
+        userAvatar: String,
+        userHtml: String
+    ) {
+        val userProfileViewModel =
+            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+                GitHubUserProfileActivityViewModel::class.java
+            )
+
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        val message =
+            if (state) userId + " " + (resources.getString(R.string.favourite_not_in_list_notification)) else userId + " " + (resources.getString(
+                R.string.favourite_in_list_notification
+            ))
+
+        with(alertDialogBuilder) {
+            setTitle(R.string.favourite)
+            setMessage(message)
+            setCancelable(false)
+            setPositiveButton(context.resources.getString(R.string.dialog_yes)) { _, _ ->
+                if (state) {
+                    userProfileViewModel.insertUserFavourite(
+                        userId,
+                        userAvatar,
+                        userHtml,
+                        this@GithubUserProfileActivity
+                    )
+                    Toast.makeText(
+                        context,
+                        userId + " " + context.resources.getString(R.string.favourite_added_notification),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_24)
+                } else {
+                    userProfileViewModel.deleteUserFavourite(userId, this@GithubUserProfileActivity)
+                    Toast.makeText(
+                        context,
+                        userId + " " + (context.resources.getString(R.string.favourite_removed_notification)),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    binding.fabAdd.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                }
+            }
+            setNegativeButton(context.resources.getString(R.string.dialog_no))
+            { dialog, _ ->
+                dialog.cancel()
+            }
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     companion object {

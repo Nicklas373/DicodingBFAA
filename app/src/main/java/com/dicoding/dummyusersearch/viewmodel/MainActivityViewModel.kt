@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.api.ApiConfig
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import com.dicoding.dummyusersearch.userdata.GitHubUserResponse
@@ -37,23 +38,23 @@ class MainActivityViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (response.body()?.items?.isEmpty() == true) {
                         _isToast.value = false
-                        _toastReason.value = "Data Pencarian Kosong!"
+                        _toastReason.value = R.string.search_result_empty.toString()
                     } else {
                         _isToast.value = true
                         _githubUserArray.value = response.body()?.items
                     }
                 } else {
                     _isToast.value = false
-                    _toastReason.value = "onFailure: ${response.message()}"
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    _toastReason.value = R.string.on_failure.toString() + " " + response.message()
+                    Log.e(TAG, R.string.on_failure.toString() + " " + response.message())
                 }
             }
 
             override fun onFailure(call: Call<GitHubUserResponse>, t: Throwable) {
                 _isLoading.value = false
                 _isToast.value = false
-                _toastReason.value = "onFailure: ${t.message.toString()}"
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                _toastReason.value = R.string.on_failure.toString() + " " + t.message.toString()
+                Log.e(TAG, R.string.on_failure.toString() + " " + t.message.toString())
             }
         })
     }

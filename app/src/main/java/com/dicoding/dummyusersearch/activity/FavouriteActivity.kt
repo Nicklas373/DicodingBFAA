@@ -48,7 +48,11 @@ class FavouriteActivity : AppCompatActivity() {
                 if (githubUserFavouriteList.isEmpty()) {
                     listReview.clear()
                     binding.listGithubUser.adapter = null
-                    Toast.makeText(this, "Daftar favourite anda kosong!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        resources.getString(R.string.favourite_empty_list),
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     setGitHubUserFavouriteData(githubUserFavouriteList)
                 }

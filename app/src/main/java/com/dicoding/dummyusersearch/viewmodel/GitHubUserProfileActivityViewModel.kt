@@ -1,10 +1,13 @@
 package com.dicoding.dummyusersearch.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.dummyusersearch.api.ApiConfig
+import com.dicoding.dummyusersearch.database.FavouriteDB
+import com.dicoding.dummyusersearch.database.FavouriteRoomDB
 import com.dicoding.dummyusersearch.userdata.GitHubUserJSON
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,6 +55,30 @@ class GitHubUserProfileActivityViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    fun insertUserFavourite(
+        userId: String,
+        userAvatar: String,
+        userHtml: String,
+        context: Context
+    ) {
+        _isLoading.value = true
+        val githubUserDBFavourite = FavouriteRoomDB.getDatabase(context).favouriteDao()
+        val inputFavData = FavouriteDB(login = userId, avatarUrl = userAvatar, htmlUrl = userHtml)
+        if (inputFavData.id.toString().isEmpty()) {
+            _isLoading.value = true
+        } else {
+            githubUserDBFavourite.insert(inputFavData)
+        }
+        _isLoading.value = false
+    }
+
+    fun deleteUserFavourite(userId: String, context: Context) {
+        _isLoading.value = true
+        val githubUserDBFavourite = FavouriteRoomDB.getDatabase(context).favouriteDao()
+        githubUserDBFavourite.delete(userId)
+        _isLoading.value = false
     }
 
     companion object {

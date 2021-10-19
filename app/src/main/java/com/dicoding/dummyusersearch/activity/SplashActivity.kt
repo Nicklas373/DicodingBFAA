@@ -1,9 +1,11 @@
 package com.dicoding.dummyusersearch.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,6 +19,7 @@ import com.dicoding.dummyusersearch.datastore.SettingPreferences
 import com.dicoding.dummyusersearch.viewmodel.SettingPreferencesViewModel
 import com.dicoding.dummyusersearch.viewmodel.ViewModelFactory
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -40,7 +43,7 @@ class SplashActivity : AppCompatActivity() {
         settingsViewModel.getSplashscreenSettings().observe(this,
             { isSplashscreenActive: Boolean ->
                 if (isSplashscreenActive) {
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()

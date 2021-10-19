@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.dummyusersearch.R
 import com.dicoding.dummyusersearch.api.ApiConfig
 import com.dicoding.dummyusersearch.userdata.GitHubUserArray
 import retrofit2.Call
@@ -35,7 +36,7 @@ class FollowFragmentViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (response.body()?.isEmpty() == true) {
                         _isToast.value = false
-                        _toastReason.value = "Tidak ada data followers!"
+                        _toastReason.value = R.string.followers_empty_list.toString()
                     } else {
                         _isToast.value = true
                     }
@@ -68,7 +69,7 @@ class FollowFragmentViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (response.body()?.isEmpty() == true) {
                         _isToast.value = false
-                        _toastReason.value = "Tidak ada data followers!"
+                        _toastReason.value = R.string.following_empty_list.toString()
                     } else {
                         _isToast.value = true
                     }

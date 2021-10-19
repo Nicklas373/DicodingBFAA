@@ -47,9 +47,11 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
                     FavouriteRoomDB.getDatabase(itemView.context.applicationContext).favouriteDao()
                 val exist = database.checkUserFavourites(binding.gitUsernameView.text.toString())
                 if (!exist) {
-                    val title = "Favourite"
+                    val title = itemView.context.resources.getString(R.string.favourite)
                     val message =
-                        "${binding.gitUsernameView.text} tidak ada di daftar favourite! Apakah anda ingin menambahkan ke daftar favourite ?"
+                        "${binding.gitUsernameView.text}" + " " + itemView.context.resources.getString(
+                            R.string.favourite_not_in_list_notification
+                        )
                     val alertDialogBuilder = AlertDialog.Builder(itemView.context)
                     with(alertDialogBuilder) {
                         setTitle(title)
@@ -67,7 +69,9 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
                             githubUserDBFavourite.insert(inputFavData)
                             Toast.makeText(
                                 context,
-                                "${binding.gitUsernameView.text} sudah di tambahkan ke daftar favourite !",
+                                "${binding.gitUsernameView.text}" + " " + itemView.context.resources.getString(
+                                    R.string.favourite_added_notification
+                                ),
                                 Toast.LENGTH_LONG
                             )
                                 .show()
@@ -80,9 +84,11 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
                     val alertDialog = alertDialogBuilder.create()
                     alertDialog.show()
                 } else {
-                    val title = "Favourite"
+                    val title = itemView.context.resources.getString(R.string.favourite)
                     val message =
-                        "${binding.gitUsernameView.text} sudah ada di daftar favourite! Apakah anda ingin menghapus dari daftar favourite ?"
+                        "${binding.gitUsernameView.text}" + " " + itemView.context.resources.getString(
+                            R.string.favourite_in_list_notification
+                        )
                     val alertDialogBuilder = AlertDialog.Builder(itemView.context)
                     with(alertDialogBuilder) {
                         setTitle(title)
@@ -95,7 +101,9 @@ class GithubUserAdapter(private val listUser: ArrayList<GitHubUserArray>) :
                             githubUserDBFavourite.delete(binding.gitUsernameView.text.toString())
                             Toast.makeText(
                                 context,
-                                "${binding.gitUsernameView.text} sudah di hapus dari favourite",
+                                "${binding.gitUsernameView.text}" + " " + itemView.context.resources.getString(
+                                    R.string.favourite_removed_notification
+                                ),
                                 Toast.LENGTH_LONG
                             )
                                 .show()

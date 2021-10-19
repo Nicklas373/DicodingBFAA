@@ -35,9 +35,11 @@ class FavouriteUserAdapter(private val listUser: List<FavouriteDB>) :
                 val exist = database.checkUserFavourites(fav.login.toString())
 
                 if (exist) {
-                    val title = "Favourite"
+                    val title = itemView.context.resources.getString(R.string.favourite)
                     val message =
-                        "Apakah anda ingin menghapus ${fav.login.toString()} dari daftar favourite?"
+                        itemView.context.resources.getString(R.string.favourite_removed_query_1) + " " + fav.login.toString() + " " + itemView.context.resources.getString(
+                            R.string.favourite_removed_query_2
+                        )
                     val alertDialogBuilder = AlertDialog.Builder(itemView.context)
                     with(alertDialogBuilder) {
                         setTitle(title)
@@ -50,7 +52,7 @@ class FavouriteUserAdapter(private val listUser: List<FavouriteDB>) :
                             githubUserDBFavourite.delete(fav.login.toString())
                             Toast.makeText(
                                 context,
-                                "${fav.login.toString()} sudah di hapus dari favourite",
+                                fav.login.toString() + " " + itemView.context.resources.getString(R.string.favourite_removed_notification),
                                 Toast.LENGTH_LONG
                             )
                                 .show()
