@@ -64,10 +64,10 @@ Aplikasi ini memiliki beberapa fitur sebagai berikut:
 
 ## Screenshoot:
 <p align="center">
-<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg">&nbsp;&nbsp;&nbsp;
-<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg">&nbsp;&nbsp;&nbsp;
-<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg">&nbsp;&nbsp;&nbsp;<br><br>
 <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-08.jpg">&nbsp;&nbsp;&nbsp;
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg">&nbsp;&nbsp;&nbsp;
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg">&nbsp;&nbsp;&nbsp;<br><br>
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg">&nbsp;&nbsp;&nbsp;
 <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-09.jpg">
 </p>
 
