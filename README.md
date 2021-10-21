@@ -47,8 +47,7 @@ Pada submission 3 membuat aplikasi "GitHub User" dengan beberapa kriteria sebaga
 
 NOTE: Data yang diambil merupakan data yang di generate dari GitHub REST API
 
-
-## Aplication Information
+## Application Information
 Aplikasi GitHub User's Search merupakan suatu aplikasi yang digunakan untuk mencari user dari website www.github.com di
 android menggunakan GitHub REST API. Aplikasi ini menerapkan beberapa konsep yang telah diberikan oleh modul Dicoding
 Academy "Belajar Fundamental Aplikasi Android"
@@ -65,11 +64,11 @@ Aplikasi ini memiliki beberapa fitur sebagai berikut:
 
 ## Screenshoot:
 <p align="center">
-- <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg"><br>
-- <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg"><br>
-- <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg"><br>
-- <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-08.jpg"><br>
-- <img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-09.jpg"><br>
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-01.jpg">&nbsp;&nbsp;&nbsp;
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-03.jpg">&nbsp;&nbsp;&nbsp;
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-06.jpg">&nbsp;&nbsp;&nbsp;<br><br>
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-08.jpg">&nbsp;&nbsp;&nbsp;
+<img width="240" height="500" src="https://raw.githubusercontent.com/Nicklas373/DicodingBFA/main/Screenshoot/photo_2021-10-19_15-50-09.jpg">
 </p>
 
 
