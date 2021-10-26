@@ -31,16 +31,11 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeToRefresh"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listGithubUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_github_user" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listGithubUser"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/item_github_user" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

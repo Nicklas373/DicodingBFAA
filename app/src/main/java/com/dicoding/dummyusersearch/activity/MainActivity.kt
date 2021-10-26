@@ -4,8 +4,6 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -92,19 +90,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
-        })
-
-        binding.swipeToRefresh.setOnRefreshListener {
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.swipeToRefresh.isRefreshing = false
                 listGitHubUser.clear()
-                mainViewModel.findGitHubUserID(binding.gitSearch.query.toString())
+                mainViewModel.findGitHubUserID(newText)
                 val adapter = GithubUserAdapter(listGitHubUser)
                 binding.listGithubUser.adapter = adapter
-            }, 2000)
-        }
+                return true
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
