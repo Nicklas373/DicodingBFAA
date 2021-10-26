@@ -3,6 +3,8 @@ package com.dicoding.dummyusersearch.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -84,6 +86,14 @@ class GithubUserProfileActivity : AppCompatActivity() {
                 gitImageSp.toString(),
                 gitHtmlSp.toString()
             )
+        }
+
+        binding.swipeToRefreshProfile.setOnRefreshListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.swipeToRefreshProfile.isRefreshing = false
+                userProfileViewModel.getGitHubUserData(title.toString())
+                checkFavourite(title.toString())
+            }, 2000)
         }
     }
 
@@ -211,7 +221,7 @@ class GithubUserProfileActivity : AppCompatActivity() {
         val alertDialogBuilder = AlertDialog.Builder(this)
 
         val message =
-            if (state) userId + " " + (resources.getString(R.string.favourite_not_in_list_notification)) else userId + " " + (resources.getString(
+            if (state) userId + " " + (resources.getString(R.string.favourite_not_in_list_notification)) else "$userId " + (resources.getString(
                 R.string.favourite_in_list_notification
             ))
 
